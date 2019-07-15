@@ -36,18 +36,11 @@ module.exports = {
     // 请求代理
     devServer: {
         host: 'localhost',
-        port: '8080', // 端口号
+        port: '8089', // 端口号
         https: false,
         open: false, // 配置自动启动浏览器
         hotOnly: true, // 热更新
-        proxy: { // 反向代理
-            '/properties': {
-                target: 'http://10.2.14.53:80/properties',
-                changeOrigin: true,
-                pathRewrite: {
-                    '^/properties': ''
-                }
-            }
-        }
+        // proxy: { // 反向代理
+        // }
     }
 }

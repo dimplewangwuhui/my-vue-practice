@@ -25,21 +25,16 @@ export default {
     }
     return lists
   },
+
   // // 时间戳格式化
-  // formatDate (value) {
-  //   if (value != null) {
-  //     return moment(value).format('YYYY-MM-DD HH:mm')
-  //   } else {
-  //     return value
-  //   }
-  // },  // // 时间戳格式化
-  // formatDate (value) {
-  //   if (value != null) {
-  //     return moment(value).format('YYYY-MM-DD HH:mm')
-  //   } else {
-  //     return value
-  //   }
-  // },
+  formatDate (value) {
+    if (value != null) {
+      return moment(value).format('YYYY-MM-DD HH:mm')
+    } else {
+      return value
+    }
+  },
+
   // 删除url参数
   delUrlArg (url, arg) {
     url = url || ''
@@ -61,6 +56,7 @@ export default {
     }
     return beforeUrl + nextUrl
   },
+
   // 替换值
   /* eslint-disable */
   changeUrlArg (url, arg, val) {
@@ -69,6 +65,7 @@ export default {
     var replaceText = arg + '=' + val
     return url.match(pattern) ? url.replace(eval('/(' + arg + '=)([^&]*)/gi'), replaceText) : (url.match('[\?]') ? url + '&' + replaceText : url + '?' + replaceText)
   },
+
   /* eslint-enable */
   toJS (data) {
     if (arguments.length < 1 || !data) return null

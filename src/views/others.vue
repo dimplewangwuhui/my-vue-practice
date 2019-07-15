@@ -26,7 +26,7 @@
         <p>{{testSet[2]}}</p>
 
         <div>
-            <el-button @click="changeObjKey">点击改变</el-button>
+            <el-button type="primary" @click="changeObjKey">点击改变</el-button>
             <div style="color: blue">Vue 不能检测对象属性的添加或删除：</div>
             <div style="color: blue">可以使用this.$set(this.person,'age',12)</div>
             <div style="color: blue">当需要添加多个对象时，Object.assign({},this.person,{age:12,name:'wee'})</div>
@@ -41,10 +41,10 @@
         <div style="color: blue">对象或数组的简单赋值，修改新值也会改变原值。这时我们需要获取原值的深拷贝对象。</div>
         <div style="color: blue">对于对象，可以通过newObj = JSON.parse(JSON.stringfy(obj))实现。</div>
         <div style="color: blue">对于数组，可以通过 newArr = […arr]或者newArr = arr.slice(0)来实现。</div>
-        <el-button @click="updateArry">点击修改</el-button>
+        <el-button type="primary" @click="updateArry">点击修改</el-button>
         <div>原数组的值:<span>{{testSet}}</span></div>
         <div>修改后的数组值:<span>{{testSet2}}</span></div>
-        <el-button @click="updateObj">点击修改</el-button>
+        <el-button type="primary" @click="updateObj">点击修改</el-button>
         <div>原对象的值:<span>{{obj.a}}</span></div>
         <div>修改后的对象值:<span>{{obj2.a}}</span></div>
 
@@ -52,22 +52,60 @@
         <div>key属性需要唯一，理想的 key 值是每项都有唯一 id，全局不需唯一，但在一个循环中需要唯一。</div>
 
         <div style="color: #FC796B; font-size: 20px; margin: 10px 0">定时器销毁问题：</div>
-        <div style="color: blue">1、通过beforeDestroy()在页面注销时清理定时器</div>
-        <div style="color: blue">2、使用$once指令监听beforeDestroy这个钩子函数清理定时器</div>
-        <el-button @click="FnTimer">1s后跳转</el-button>
+        <div>1、通过beforeDestroy()在页面注销时清理定时器</div>
+        <div>2、使用$once指令监听beforeDestroy这个钩子函数清理定时器</div>
+        <el-button type="primary" @click="FnTimer">1s后跳转</el-button>
 
         <div style="color: #FC796B; font-size: 20px; margin: 10px 0">delete和Vue.delete的区别：</div>
-        <div style="color: blue">delete只是将被删除的元素变成了 empty/undefined， 其他的元素的值还是不变。</div>
-        <div style="color: blue">Vue.delete直接删除了元素， 改变了数组的值。</div>
+        <div>delete只是将被删除的元素变成了 empty/undefined， 其他的元素的值还是不变。</div>
+        <div>Vue.delete直接删除了元素， 改变了数组的值。</div>
         <div>数组:<span>{{array1}}</span></div>
-        <el-button @click="FnDelete">delete</el-button>
-        <el-button @click="FnVueDelete">VueDelete</el-button>
+        <el-button type="primary" @click="FnDelete">delete</el-button>
+        <el-button type="primary" @click="FnVueDelete">VueDelete</el-button>
+
+        <div style="color: #FC796B; font-size: 20px; margin: 10px 0">img加载图片失败时，使用默认图片：</div>
+        <div>1、img标签自带onError属性，当图片加载失败时，触发error事件：</div>
+        <!--<img src="../assets/img/logo.png" onerror="this.src='http://ww.jpg'">-->
+        <div>2、jQuery的error事件</div>
+        <!--$('img').error(function(){-->
+            <!--$(this).attr('src',"httP://ww.jpg")-->
+        <!--})-->
+        <div>3、jQuery的one绑定（使用前两种，如果默认图片也加载失败，会形成死循环，最好使用one绑定，只执行一次）</div>
+        <!--$('img').one('error', function(){-->
+            <!--$(this).attr('src',"httP://ww.jpg")-->
+        <!--})-->
+
+        <div style="color: #FC796B; font-size: 20px; margin: 10px 0">v-cloak属性：</div>
+        <div>vue的模板建议都加上v-cloak属性，网页加载的时候，先加载html，再加载js，网络不太好的情况下，页面会看到没有渲染的模板，不太美观。</div>
+        <div>在模板元素上加`v-cloak`属性，同时加一个样式， [v-cloak]{ display:none; }</div>
+        <div>没有渲染的模板直接不显示给用户，当模板渲染后，vue会把v-cloak属性删除</div>
+
+        <div style="color: #FC796B; font-size: 20px; margin: 10px 0">时间对象：</div>
+        <div>{{timeDifference}}</div>
+        <div>getTime——获取当前时间(从1970.1.1开始的毫秒数)<span style="margin-left: 20px; color: #FC796B">{{getTime}}</span></soan></div>
+        <div>getDate——获取当前日(1-31)<span style="margin-left: 20px; color: #FC796B">{{getDate}}</span></div>
+        <div>getFullYear——获取完整的年份<span style="margin-left: 20px; color: #FC796B">{{getFullYear}}</span></div>
+        <div>getDay——获取当前星期X(0-6,0代表星期天)<span style="margin-left: 20px; color: #FC796B">{{getDay}}</span></div>
+        <div>getMonth——获取当前月份(0-11,0代表1月)<span style="margin-left: 20px; color: #FC796B">{{getMonth}}</span></div>
+        <div>getHours——获取当前小时数(0-23)<span style="margin-left: 20px; color: #FC796B">{{getHours}}</span></div>
+        <div>getMinutes——获取当前分钟数(0-59)<span style="margin-left: 20px; color: #FC796B">{{getMinutes}}</span></div>
+        <div>getSeconds——获取当前秒数(0-59)<span style="margin-left: 20px; color: #FC796B">{{getSeconds}}</span></div>
+        <div>toLocaleDateString()——获取当前日期<span style="margin-left: 20px; color: #FC796B">{{toLocaleDateString}}</span></div>
+        <div>toLocaleTimeString()——获取当前时间<span style="margin-left: 20px; color: #FC796B">{{toLocaleTimeString}}</span></div>
+        <div>toLocaleString()——获取当前日期与时间<span style="margin-left: 20px; color: #FC796B">{{toLocaleString}}</span></div>
+
+        <div style="color: #FC796B; font-size: 20px; margin: 10px 0">setTimeout 0 有什么作用：</div>
+        <div>由于js是单线程执行的，无法同时执行多段代码，当某段代码在执行时，所有后续任务必须等待从而排成了一个队列，但上段代码执行完后，在从队列中取出下一个任务；
+            所以一次鼠标点击，或是计时器到达时间点，或是 Ajax 请求完成触发了回调函数，这些事件处理程序或回调函数都不会立即运行，而是立即排队，一旦线程有空闲就执行。
+            当使用setTimeout时，表示将该段程序会在适当的时间查到任务队列中，如果setTimeout 为0则表示立即插入，但它不会立即执行，而是等待其它代码执行完后再执行；</div>
+        <el-button type="primary" @click="setTime0">点击查看控制台</el-button>
+
     </div>
 </template>
 
 <script>
     export default {
-        name: "easyFalse",
+        name: "others",
         data() {
             return {
                 content:[
@@ -86,8 +124,93 @@
                     a: ''
                 },
                 timer:null,
-                array1:[1,2,3,4,5,6,7,8,9]
+                array1:[1,2,3,4,5,6,7,8,9],
+                toggle:'',
+                a:'a',
+                b:'b',
+                topics:[
+                    {
+                        title:'dan xuan ti',
+                        type:1,
+                        options:['danxuan1','danxuan2','danxuan3','danxuan4']
+                    },
+                    {
+                        title:'pai xu ti',
+                        type:3,
+                        options:['pai xu 3','pai xu 2','pai xu 1','pai xu 4',]
+                    },
+
+                    {
+                        title:'duo xuan ti',
+                        type:2,
+                        options:['duoxuan1','duoxuan2','duoxuan3','duoxuan4']
+                    },
+                    {
+                        title:'pai xu ti',
+                        type:3,
+                        options:['pai xu 3','pai xu 2','pai xu 1','pai xu 4',]
+                    },{
+                        title:'dan xuan ti',
+                        type:1,
+                        options:['danxuan1','danxuan2','danxuan3','danxuan4']
+                    },
+                    {
+                        title:'pai xu ti',
+                        type:3,
+                        options:['pai xu 3','pai xu 2','pai xu 1','pai xu 4',]
+                    },
+
+                    {
+                        title:'duo xuan ti',
+                        type:2,
+                        options:['duoxuan1','duoxuan2','duoxuan3','duoxuan4']
+                    },
+                    {
+                        title:'pai xu ti',
+                        type:3,
+                        options:['pai xu 3','pai xu 2','pai xu 1','pai xu 4',]
+                    }
+                ],
+                timeDifference:'',
+                getTime:'',
+                getDate:'',
+                getFullYear:'',
+                getDay:'',
+                getMonth:'',
+                getHours:'',
+                getMinutes:'',
+                getSeconds:'',
+                toLocaleDateString:'',
+                toLocaleTimeString:'',
+                toLocaleString:'',
             }
+        },
+
+        render:function(createElement){
+            return createElement('div', this.topics.map((v,index)=>{
+                switch(v.type){
+                    case 1://单选题
+                    case 2://多选题
+                        return createElement('e-choice',{
+                            props:{
+                                index:index + 1,
+                                topic:v
+                            }
+                        });
+                        break
+                    case 3://排序题
+                        return createElement('e-sort',{
+                            props:{
+                                index:index + 1,
+                                topic:v
+                            }
+                        });
+                        break
+                    default:
+                        console.error('type not implement');
+                        break
+                }
+            }))
         },
         methods: {
             showIndicator(i) {
@@ -112,8 +235,8 @@
                 // this.$set(this.obj, 'c', '我是obj里的c的值');
             },
             updateArry() {
-                // this.testSet2 = this.testSet;
-                this.testSet2 = [...this.testSet];   // this.testSet2 = this.testSet.slice(0);
+                this.testSet2 = this.testSet;
+                // this.testSet2 = [...this.testSet];   // this.testSet2 = this.testSet.slice(0);
                 this.testSet2.push('w');
             },
             updateObj() {
@@ -126,9 +249,9 @@
                     this.$router.push('/')
                 },1000);
                 // 通过$once来监听定时器，在beforeDestroy钩子可以被清除。
-                // this.$once('hook:beforeDestroy', () => {
-                //     clearInterval(this.timer);
-                // })
+                this.$once('hook:beforeDestroy', () => {
+                    clearInterval(this.timer);
+                })
             },
             FnDelete() {
                 delete this.array1[0];
@@ -137,6 +260,44 @@
             FnVueDelete() {
                 this.$delete(this.array1,0);
                 console.log('array1:', this.array1)
+            },
+
+            getIntervalDate(starDateString, endDataString) {
+                setInterval(function() {
+                    const allDifference = Date.parse(endDataString) - Date.parse(starDateString);
+                    const dayConvert = 1000 * 60 * 60 * 24;
+                    const hoursConvert = 1000 * 60 * 60;
+                    const minutersConvert = 1000 * 60;
+                    const secondsConvert = 1000;
+                    const dayDifference = parseInt(allDifference / dayConvert);
+                    const hoursDifference = parseInt((allDifference % dayConvert) / hoursConvert);
+                    const minutesDifference = parseInt(allDifference % dayConvert % hoursConvert / minutersConvert);
+                    const secondsDifference = parseInt(allDifference % dayConvert % hoursConvert % minutersConvert / secondsConvert);
+                    const str = `从 ${starDateString} 距离 ${endDataString} 还有 ${dayDifference} 天${hoursDifference}小时${minutesDifference}分钟${secondsDifference}秒`;
+                    this.timeDifference = str;
+                    return str;
+                }, 1000)
+            },
+
+            setTime0() {
+                console.log('1');
+                console.log('2');
+                setTimeout(function () {
+                    console.log('3')
+                },0);
+                console.log('4');
+                console.log('5');
+                var a = 100;
+                // setInterval(function () {
+                //     console.log(a++)
+                // }, 1000)
+
+                // for(var i=0;i<5;i++){
+                //     setTimeout(function(){
+                //         console.log('delayer:' + i );
+                //     }, 0);
+                //     console.log(i);
+                // }
             }
         },
         watch: {
@@ -153,8 +314,29 @@
         beforeDestroy() {
             clearInterval(this.timer);
             this.timer = null;
-            console.log('定时器:', this.timer)
         },
+
+        mounted() {
+            var now = new Date();
+            this.getIntervalDate('2019-07-12 10:22:17', '2019-07-13 00:00:00');
+
+            this.getTime = now.getTime();
+            this.getDate = now.getDate();
+            this.getFullYear = now.getFullYear();
+            this.getDay = now.getDay();
+            this.getMonth = now.getMonth();
+            this.getHours = now.getHours();
+            this.getMinutes = now.getMinutes();
+            this.getSeconds = now.getSeconds();
+            this.toLocaleDateString = now.toLocaleDateString();
+            this.toLocaleTimeString = now.toLocaleTimeString();
+            this.toLocaleString = now.toLocaleString();
+            console.log(Date());
+            console.log(Date.now());
+            console.log(Date.parse('2019-07-12 15:49:23'));
+            console.log(Date.UTC(2019,7,12,15,49,23))
+
+        }
     }
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="logo">
-      <span class="logo_text">API后台管理系统</span>
+      <span class="logo_text">Vue.js开发问题总结</span>
     </div>
     <div class="logout">
       <el-dropdown trigger="hover">
@@ -51,7 +51,7 @@
 
 <style>
   .header {width: 100%; height: 60px; line-height: 60px;background-color: #fff; border-bottom: 1px solid #DDE2EF; position: fixed; z-index: 999; margin-top: -60px}
-  .logo {width: 250px; height: 60px; line-height: 60px; background-color: #FC796B; text-align: center; font-size: 20px; color: #fff; float: left}
+  .logo {width: 201px; height: 60px; line-height: 60px; background-color: #FC796B; text-align: center; font-size: 20px; color: #fff; float: left}
   .logout {float: right; margin-right: 50px}
   .logout:hover {background-color: #fff7f6; height: 60px}
   .username {white-space:nowrap;max-width:10em;overflow:hidden;text-overflow:ellipsis;line-height:1.5;}

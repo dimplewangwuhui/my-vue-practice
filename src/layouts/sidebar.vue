@@ -1,6 +1,10 @@
 <template>
   <div class="sidebar" style="overflow-x: hidden;" :class="{'sidebar--collapse': isCollapse}">
-    <div style="overflow:auto;width:250px;height:100%;">
+    <div style="overflow:auto;width:200px;height:100%;">
+    <a @click.stop="collapsed()" class="toggle-menu">
+      <i class="el-icon-s-fold" v-if="this.sidebar.status === false"></i>
+      <i v-else class="el-icon-s-unfold"></i>
+    </a>
     <el-tabs>
       <el-tab-pane>
         <span slot="label"><i class="glyphicon glyphicon-menu-hamburger"></i></span>
@@ -159,6 +163,7 @@ export default {
       'sidebar'
     ]),
     isCollapse () {
+      console.log('导航栏状态:', this.sidebar.status);
       return this.sidebar.status
     },
     routes () {
@@ -185,10 +190,10 @@ export default {
 </script>
 
 <style>
-.sidebar, .sidebar .el-menu{width:250px;cursor: pointer;}
-.sidebar {background:#272930;transition: all .3s ease-out;position:fixed;top:60px;left:0;bottom:0;z-index:1010;overflow:hidden;font-size:14px;}
+.sidebar, .sidebar .el-menu{width:200px;cursor: pointer;}
+.sidebar {background:#272930;transition: all .3s ease-out;position:fixed;top:60px;left:0;bottom:0;z-index:1010;overflow:hidden;font-size:14px;border-right: 1px solid #272930}
 .sidebar.sidebar--collapse {width:56px;}
-.sidebar .toggle-menu {display:block;height:56px;line-height:56px;width:100%;padding:0 0 0 4px;transition: all .3s ease-out;text-align:left;cursor:pointer;border-bottom:1px solid #fff;color:#272930;}
+.sidebar .toggle-menu {display:block;height:50px;line-height:50px;width:100%;transition: all .3s ease-out;text-align:left;cursor:pointer;border-bottom:1px solid #fff;color:#fff;}
 .sidebar .toggle-menu > i {width:52px;text-align:center;}
 .sidebar .title {color:#fff;font-size:14px;}
 .sidebar .is-active > .title,.sidebar .is-active .el-submenu__title > .title {color:#fff;}
@@ -202,14 +207,14 @@ export default {
 .sidebar .el-menu-item.is-active, .sidebar .el-submenu.is-active .el-submenu__title {color:#fff;background-color:#17191E;}
 .sidebar .el-menu {background-color:transparent;border-radius:0;transition: none;border:none;}
 .sidebar .el-menu.el-menu--collapse {width:100%;transition: none;}
-.sidebar .el-menu li > ul {background-color:#F2F2F2;}
+.sidebar .el-menu li > ul {background-color:#272930;}
 .sidebar .el-menu--collapse .el-submenu .el-menu {position:relative;margin:0;top:0;left:0;border-radius:none;}
 .sidebar .icon-route {width:52px;height:50px;color:#828899;text-align:center;line-height:50px;margin:0;padding:0;position:absolute;display:flex;align-items:center;justify-content:center;visibility:visible;}
 .sidebar .el-menu .el-menu-item.is-active .icon-route, .sidebar .el-submenu.is-active .el-submenu__title .icon-route {color:#FFF;}
 .sidebar .el-submenu .el-menu-item.is-active .icon-route {color:#17191E;}
 .sidebar .el-menu-item .title, .sidebar .el-submenu__title .title {margin:0 20px;}
 .sidebar .el-submenu .el-menu-item {height:42px;min-width:auto;line-height:40px;}
-.sidebar .el-submenu .el-menu-item.is-active {background-color:#ebedf9;color:#17191E;padding:0;transition: all .3s ease-out;}
+.sidebar .el-submenu .el-menu-item.is-active {background-color:#F0F0F0;color:#17191E;padding:0;transition: all .3s ease-out;border-right: 2px solid #272930;}
 .sidebar .el-submenu .el-menu-item .title {font-size:12px;}
 .sidebar .el-submenu .el-menu-item .icon-route {height:42px; line-height:42px;}
 .sidebar .el-menu-item > .el-tooltip {position:relative;height:100%;width:100%;}

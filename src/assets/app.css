@@ -1,0 +1,80 @@
+html {font-size:12px;}
+body {width:100%;height:100%;margin:0;padding:0;color:#576077;background-color:#F0F0F0;line-height:1.5rem;font-size:1.2rem;font-family: "Segoe UI", "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;}
+
+*:before, *:after {box-sizing: border-box;}
+ul {padding:0;margin:0;list-style:none;}
+.flip-h {transform: rotateY(180deg);}
+a:focus, a:hover {text-decoration: none;}
+hr {margin:1rem 0;}
+
+.h-center > * {text-align:center;flex:1;justify-content:center;}
+.h-end > * {flex:1;}
+.h-end > *:last-child {text-align:right;justify-content:flex-end;}
+
+button > span {display: inline-flex;align-items:center;height:100%;width:100%;justify-content: center;text-align: center;}
+svg {fill: currentColor;max-height:64px;max-width:64px;}
+svg + span {margin-left:5px;}
+.svg-icon {width:20px;height:20px;}
+.icon-user {width:24px;height:24px;color:#dde2ef;}
+#svg-icon-user11 circle {fill:#f00;}
+
+.container {padding:0 1.5rem;line-height: 1.42857143;}
+[class~=container] .container-align {margin:0 -1.5rem;width:auto;}
+
+#app .el-button {font-size:12px;padding:8px 16px;border:1px solid #dde2ef;position:relative;color:#576077;border-radius:3px;}
+/*#app .el-button:focus, #app .el-button:hover {color:#F58A7F;border-color: #F58A7F;}*/
+#app .el-button .btn-badge {background-color: #F58A7F;position:absolute;top:0;right:0;margin:-1rem -1rem 0 0;border-radius:100%;padding:5px;white-space:nowrap;font-weight: 400;}
+#app .el-button.el-button--primary {background-color: #F58A7F;border-color:#F58A7F; color:#fff;}
+#app .el-button.el-button--default:hover {background-color: #fff;border-color:#F58A7F; color:#F58A7F;}
+#app .el-button--primary:focus, .el-button--primary:hover {color:#fff;}
+#app .el-button--text {border:none;}
+#app .el-button.is-loading > span {display:inline-block;width:auto;}
+.el-button.el-button--default.el-button--small:hover {background-color: #fff;border-color:#F58A7F; color:#F58A7F;}
+.el-button.el-button--default.el-button--small.el-button--primary:hover {background-color: #F58A7F;border-color:#F58A7F; color:#fff;}
+
+#app .el-input-group {height:3rem;font-size:12px;}
+#app .el-input__inner {min-height:3rem;height:100%;border-radius: 3px;border-color:#DDE2EF;color:#576077;}
+#app .el-input__inner:hover {border-color:#F58A7F;}
+#app .el-input-group__append {background-color:#F58A7F;border:none;padding:0;border-radius: 3px;border-top-left-radius:0;border-bottom-left-radius:0;}
+#app .el-input-group__append button.el-button {color:#fff;margin:0;height:3rem;padding:0 15px;}
+#app .el-input-group .el-select, #app .el-select .el-input {height:100%;}
+#app .el-input-group__prepend {border:1px solid #DDE2EF;border-right:1px solid transparent;background-color:#fff;color:#576077;}
+#app .el-input-group__prepend:hover {border-color:#F58A7F;border-right:1px solid #F58A7F;}
+
+#app .el-select {min-width:18rem; margin-right: 15px}
+#app .el-select .el-input__inner {border-radius:0;font-size:12px;}
+#app .el-select:hover .el-input__inner {border-color:#F58A7F;}
+#app .el-select-dropdown {margin:1px 0;}
+#app .el-select-dropdown__list {padding:0;max-width:30rem;}
+#app .el-select-dropdown__item {font-size: 12px;height:auto;}
+#app .el-select-dropdown__item {white-space: normal;}
+#app .el-select-dropdown__empty {font-size:12px;}
+#app .el-select-dropdown__item.hover {background-color: transparent;}
+#app .el-select-dropdown__item:hover {background-color: #F58A7F}
+.el-select-dropdown__item.selected {color: #F58A7F}
+.el-select-dropdown__item.selected.hover {background-color:#F58A7F; color:#fff;}
+
+
+.el-dropdown-menu {min-width:120px;margin:0;font-size:1.2rem;max-width:30rem;background-color:#fafaff;padding:0;}
+.el-dropdown-menu > li {padding-left: 3.5rem; position: relative;color: #F58A7F}
+.el-dropdown-menu > li:hover {padding-left: 3.5rem; position: relative;background-color: #F58A7F;color:#fff}
+.el-dropdown-menu > .panel {background-color:transparent;border-radius:0;box-shadow:none;}
+.el-dropdown-menu > .panel:last-child {margin:0;padding:1.5rem;}
+.el-dropdown--inner {position:relative;}
+.el-dropdown--inner .el-dropdown-menu {position:initial!important;left:0!important;right:0!important;}
+
+.el-dialog__header {background-color: #F58A7F;}
+.el-dialog__title {color: #fff; font-weight: 700}
+.el-dialog__headerbtn .el-dialog__close {color: #fff; font-weight: 700}
+.el-breadcrumb__inner a, .el-breadcrumb__inner.is-link, .el-breadcrumb__inner a:hover, .el-breadcrumb__inner.is-link:hover {color: #F58A7F; font-weight: 500}
+.el-textarea__inner:hover {border: 1px solid #F58A7F !important;}
+.form-control {width:50px;height:30px;display: inline-block;border: 1px solid #DDE2EF}
+.form-control:focus,.form-control:hover{border-color:#F58A7F !important;outline: none;}
+.icon {
+    width: 6em;
+    height: 6em;
+    vertical-align: -0.15em;
+    /*fill: currentColor;*/
+    fill: #ffffff;
+    overflow: hidden;
+}
