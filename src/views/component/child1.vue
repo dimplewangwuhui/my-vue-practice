@@ -1,7 +1,8 @@
 <!--子组件1-->
 <template>
     <div class="childOne">
-        <el-button @click="emitEvent">点击发送事件</el-button>
+        <h1>兄弟组件1</h1>
+        <el-button type="primary" @click="emitEvent">点击向兄弟组件2发送事件</el-button>
     </div>
 </template>
 
@@ -11,7 +12,7 @@
         data () {
             return {
                 childData: {
-                    text: 'child1Message'
+                    text: 'hey, brother'
                 }
             }
         },

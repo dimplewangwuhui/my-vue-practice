@@ -43,7 +43,7 @@
         <div>
             <div style="width: 100px;height: 100px;float: left; margin: 0 20px 0 0" :class="{'bg': bgStyle, 'text': textStyle}">哈哈哈</div>
             <div :style="{'background-image': 'url(' +item+ ')'}" class="bgimg"></div>
-            <div :style="{'background-image': 'url(' + require('../assets/img/logo.png') + ') '}" class="bgimg"></div>
+            <div :style="{'background-image': 'url(' + require('../../assets/img/logo.png') + ') '}" class="bgimg"></div>
         </div>
 
         <div style="color: #FC796B; font-size: 20px; margin: 130px 0 10px 0">CSS预处理器：</div>
@@ -62,11 +62,11 @@
                 show: true,
                 show2: true,
                 show3: true,
-                transitionUrl: require('../assets/img/transition.png'),
+                transitionUrl: require('../../assets/img/transition.png'),
                 showColor: true,
                 bgStyle: true,
                 textStyle: true,
-                item: require('../assets/img/logo.png'),
+                item: require('../../assets/img/logo.png'),
             }
         }
     }

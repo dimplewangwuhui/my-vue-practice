@@ -1,7 +1,8 @@
 <!--子组件2-->
 <template>
     <div class="childTwo">
-        <span>子组件1传给子组件2的值：{{the_data}}</span>
+        <h1>兄弟组件2</h1>
+        <span>兄弟组件1传给兄弟组件2的值为：{{the_data}}</span>
     </div>
 </template>
 

@@ -81,8 +81,8 @@
         <div>没有渲染的模板直接不显示给用户，当模板渲染后，vue会把v-cloak属性删除</div>
 
         <div style="color: #FC796B; font-size: 20px; margin: 10px 0">时间对象：</div>
-        <div>{{timeDifference}}</div>
-        <div>getTime——获取当前时间(从1970.1.1开始的毫秒数)<span style="margin-left: 20px; color: #FC796B">{{getTime}}</span></soan></div>
+        <div style="font-size: 20px; margin: 10px 0">{{timeDifference}}</div>
+        <div>getTime——获取当前时间(从1970.1.1开始的毫秒数)<span style="margin-left: 20px; color: #FC796B">{{getTime}}</span></div>
         <div>getDate——获取当前日(1-31)<span style="margin-left: 20px; color: #FC796B">{{getDate}}</span></div>
         <div>getFullYear——获取完整的年份<span style="margin-left: 20px; color: #FC796B">{{getFullYear}}</span></div>
         <div>getDay——获取当前星期X(0-6,0代表星期天)<span style="margin-left: 20px; color: #FC796B">{{getDay}}</span></div>
@@ -100,10 +100,39 @@
             当使用setTimeout时，表示将该段程序会在适当的时间查到任务队列中，如果setTimeout 为0则表示立即插入，但它不会立即执行，而是等待其它代码执行完后再执行；</div>
         <el-button type="primary" @click="setTime0">点击查看控制台</el-button>
 
+        <div style="color: #FC796B; font-size: 20px; margin: 10px 0">Excel导出功能：</div>
+        <el-button type="primary" @click="FnToExcel" style="float: right; margin-bottom: 10px">导出excel</el-button>
+        <el-table id="el-table" :data="tableData" border>
+            <el-table-column label="姓名" prop="name"></el-table-column>
+            <el-table-column label="年龄" prop="age"></el-table-column>
+            <el-table-column label="性别" prop="sex"></el-table-column>
+        </el-table>
+
+        <div style="color: #FC796B; font-size: 20px; margin: 10px 0">Set数据结构：</div>
+        <div>ES6 提供了新的数据结构 Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。</div>
+        <el-table :data="setTableData" border>
+            <el-table-column label="Set 实例的属性和方法">
+                <el-table-column label="方法" prop="method1"></el-table-column>
+                <el-table-column label="说明" prop="note1"></el-table-column>
+            </el-table-column>
+            <el-table-column label="Set 遍历操作">
+                <el-table-column label="操作" prop="method2"></el-table-column>
+                <el-table-column label="说明" prop="note2"></el-table-column>
+            </el-table-column>
+        </el-table>
+        <el-button type="primary" @click="FnMap">点击查看控制台</el-button>
+
+        <div style="color: #FC796B; font-size: 20px; margin: 10px 0">main.js中Vue.use()和Vue.prototype.$xx = xx的区别：</div>
+        <div>1、不是为了vue写的插件(插件内要处理)不支持Vue.use()加载方式</div>
+        <div>2、非vue官方库不支持new Vue()方式</div>
+        <div>3、每一个vue组件都是Vue的实例，所以组件内this可以拿到Vue.prototype上添加的属性和方法</div>
+        <div>4、Vue的插件是一个对象, 就像Element;插件对象必须有install字段;install字段是一个函数;初始化插件对象需要通过Vue.use()</div>
     </div>
 </template>
 
 <script>
+    import FileSaver from 'file-saver';
+    import XLSX from 'xlsx';
     export default {
         name: "others",
         data() {
@@ -128,49 +157,6 @@
                 toggle:'',
                 a:'a',
                 b:'b',
-                topics:[
-                    {
-                        title:'dan xuan ti',
-                        type:1,
-                        options:['danxuan1','danxuan2','danxuan3','danxuan4']
-                    },
-                    {
-                        title:'pai xu ti',
-                        type:3,
-                        options:['pai xu 3','pai xu 2','pai xu 1','pai xu 4',]
-                    },
-
-                    {
-                        title:'duo xuan ti',
-                        type:2,
-                        options:['duoxuan1','duoxuan2','duoxuan3','duoxuan4']
-                    },
-                    {
-                        title:'pai xu ti',
-                        type:3,
-                        options:['pai xu 3','pai xu 2','pai xu 1','pai xu 4',]
-                    },{
-                        title:'dan xuan ti',
-                        type:1,
-                        options:['danxuan1','danxuan2','danxuan3','danxuan4']
-                    },
-                    {
-                        title:'pai xu ti',
-                        type:3,
-                        options:['pai xu 3','pai xu 2','pai xu 1','pai xu 4',]
-                    },
-
-                    {
-                        title:'duo xuan ti',
-                        type:2,
-                        options:['duoxuan1','duoxuan2','duoxuan3','duoxuan4']
-                    },
-                    {
-                        title:'pai xu ti',
-                        type:3,
-                        options:['pai xu 3','pai xu 2','pai xu 1','pai xu 4',]
-                    }
-                ],
                 timeDifference:'',
                 getTime:'',
                 getDate:'',
@@ -183,35 +169,23 @@
                 toLocaleDateString:'',
                 toLocaleTimeString:'',
                 toLocaleString:'',
+
+                tableData: [
+                    {name:'王武辉', age:'10', sex:'男'},
+                    {name:'王美丽', age:'20', sex:'女'},
+                    {name:'王翠花', age:'30', sex:'女'}
+                ],
+                setTableData: [
+                    {method1:'Set.prototype.size',note1:'返回Set实例的成员总数',method2:'Set.prototype.keys()',note2:'返回键名的遍历器'},
+                    {method1:'Set.prototype.add(value)',note1:'添加某个值，返回 Set 结构本身',method2:'Set.prototype.values()',note2:'返回键值的遍历器'},
+                    {method1:'Set.prototype.delete(value)',note1:'删除某个值，返回一个布尔值，表示删除是否成功',method2:'Set.prototype.entries()',note2:'返回键值对的遍历器'},
+                    {method1:'Set.prototype.has(value)',note1:'返回一个布尔值，表示该值是否为Set的成员',method2:'Set.prototype.forEach()',note2:'使用回调函数遍历每个成员'},
+                    {method1:'Set.prototype.clear()',note1:'清除所有成员，没有返回值',method2:'',note2:''},
+                ]
             }
         },
 
-        render:function(createElement){
-            return createElement('div', this.topics.map((v,index)=>{
-                switch(v.type){
-                    case 1://单选题
-                    case 2://多选题
-                        return createElement('e-choice',{
-                            props:{
-                                index:index + 1,
-                                topic:v
-                            }
-                        });
-                        break
-                    case 3://排序题
-                        return createElement('e-sort',{
-                            props:{
-                                index:index + 1,
-                                topic:v
-                            }
-                        });
-                        break
-                    default:
-                        console.error('type not implement');
-                        break
-                }
-            }))
-        },
+
         methods: {
             showIndicator(i) {
                 this.$alert('index: '+ i);
@@ -235,8 +209,8 @@
                 // this.$set(this.obj, 'c', '我是obj里的c的值');
             },
             updateArry() {
-                this.testSet2 = this.testSet;
-                // this.testSet2 = [...this.testSet];   // this.testSet2 = this.testSet.slice(0);
+                // this.testSet2 = this.testSet;
+                this.testSet2 = [...this.testSet];   // this.testSet2 = this.testSet.slice(0);
                 this.testSet2.push('w');
             },
             updateObj() {
@@ -263,20 +237,18 @@
             },
 
             getIntervalDate(starDateString, endDataString) {
-                setInterval(function() {
-                    const allDifference = Date.parse(endDataString) - Date.parse(starDateString);
-                    const dayConvert = 1000 * 60 * 60 * 24;
-                    const hoursConvert = 1000 * 60 * 60;
-                    const minutersConvert = 1000 * 60;
-                    const secondsConvert = 1000;
-                    const dayDifference = parseInt(allDifference / dayConvert);
-                    const hoursDifference = parseInt((allDifference % dayConvert) / hoursConvert);
-                    const minutesDifference = parseInt(allDifference % dayConvert % hoursConvert / minutersConvert);
-                    const secondsDifference = parseInt(allDifference % dayConvert % hoursConvert % minutersConvert / secondsConvert);
-                    const str = `从 ${starDateString} 距离 ${endDataString} 还有 ${dayDifference} 天${hoursDifference}小时${minutesDifference}分钟${secondsDifference}秒`;
-                    this.timeDifference = str;
-                    return str;
-                }, 1000)
+                const allDifference = Date.parse(endDataString) - Date.parse(starDateString);
+                const dayConvert = 1000 * 60 * 60 * 24;
+                const hoursConvert = 1000 * 60 * 60;
+                const minutersConvert = 1000 * 60;
+                const secondsConvert = 1000;
+                const dayDifference = parseInt(allDifference / dayConvert);
+                const hoursDifference = parseInt((allDifference % dayConvert) / hoursConvert);
+                const minutesDifference = parseInt(allDifference % dayConvert % hoursConvert / minutersConvert);
+                const secondsDifference = parseInt(allDifference % dayConvert % hoursConvert % minutersConvert / secondsConvert);
+                const str = `从 ${starDateString} 距离 ${endDataString} 还有 ${dayDifference} 天${hoursDifference}小时${minutesDifference}分钟${secondsDifference}秒`;
+                this.timeDifference = str;
+                return str;
             },
 
             setTime0() {
@@ -297,8 +269,71 @@
                 //         console.log('delayer:' + i );
                 //     }, 0);
                 //     console.log(i);
-                // }
-            }
+                // },
+            },
+
+            checkDate() {
+                var date = new Date();
+                var newMonth = Number(date.getMonth())+1;
+                if(Number(newMonth)<10){
+                    newMonth = '0'+newMonth
+                }
+                var newDate = date.getFullYear()+'-'+newMonth+'-'+date.getDate();
+                if(date.toLocaleTimeString()[0] === '下'){
+                    let newTime = date.toLocaleTimeString().replace('下午','');
+                    let newListTime = newTime.split(':');
+                    newListTime[0] = Number(newListTime[0])+12;
+                    let resultTime = newListTime.join(':');
+                    let result = newDate +' '+resultTime;
+                    this.getIntervalDate(result, '2019-10-01 00:00:00');
+                }
+            },
+            // 导出excel
+            FnToExcel() {
+                let time = new Date();
+                let wb = XLSX.utils.table_to_book(document.querySelector('#el-table'));
+                let wbout = XLSX.write(wb, {
+                    bookType: 'xlsx',
+                    bookSST: true,
+                    type: 'array'
+                });
+                try {
+                    FileSaver.saveAs(
+                        new Blob([wbout], { type: 'application/octet-stream' }),
+                        `名字${time.getTime()}.xlsx` // 文件名
+                    );
+                } catch (e) {
+                    if (typeof console !== 'undefined') {
+                        this.$message.error('导出失败');
+                        console.log(e, wbout);
+                    }
+                }
+                return wbout;
+            },
+            FnMap() {
+                const s = new Set([1,1,2,2,2,2,3,4,4,5]);
+                console.log('set1:', s);     // {1, 2, 3, 4, 5}
+                console.log(typeof s);      // object
+                const set = [...s];
+                console.log('set2:', set);   // [1,2,3,4,5]
+
+                s.add(6).add(6).add(7);
+                console.log('set3:', s);
+                console.log('set4:', s.size);
+                console.log('set5:', s.has(5));
+                s.delete(7);
+                console.log('set6:', s);
+
+                for(let i of s.keys()){
+                    console.log('key:', i)
+                }
+                for(let i of s.values()){
+                    console.log('value:', i)
+                }
+                for(let i of s.entries()){
+                    console.log('entries:', i)
+                }
+            },
         },
         watch: {
             inputContent: function (newValue, oldValue) {
@@ -318,8 +353,6 @@
 
         mounted() {
             var now = new Date();
-            this.getIntervalDate('2019-07-12 10:22:17', '2019-07-13 00:00:00');
-
             this.getTime = now.getTime();
             this.getDate = now.getDate();
             this.getFullYear = now.getFullYear();
@@ -334,8 +367,9 @@
             console.log(Date());
             console.log(Date.now());
             console.log(Date.parse('2019-07-12 15:49:23'));
-            console.log(Date.UTC(2019,7,12,15,49,23))
+            console.log(Date.UTC(2019,7,12,15,49,23));
 
+            setInterval(this.checkDate, 1000);
         }
     }
 </script>

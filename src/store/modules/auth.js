@@ -6,7 +6,9 @@ const userKey = 'Auth-User';
 const auth = {
     state: {
         user: common.toJS(store.get(userKey)),
-        token: store.get(tokenkey)
+        token: store.get(tokenkey),
+        AMsg: '',
+        BMsg: ''
     },
 
     mutations: {
@@ -17,6 +19,12 @@ const auth = {
         SET_USER: (state, user) => {
             store.set(userKey, user);
             state.user = user
+        },
+        receiveAMsg(state, payload) {
+            state.AMsg = payload.AMsg
+        },
+        receiveBMsg(state, payload) {
+            state.BMsg = payload.BMsg
         }
     },
     actions: {

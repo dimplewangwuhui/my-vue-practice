@@ -1,15 +1,14 @@
 <template>
     <section class="f-mainPage">
-        <span><i class="el-icon-edit" style="margin: 0 20px 10px 18px; color: #FC796B"></i>
-            父子组件的通信，通过 $emit 的方式是最好的方式
-        </span>
+        <div style="color: #FC796B; font-size: 20px; margin: 10px 0">父子组件之间的通信：</div>
+        <span>父子组件的通信，通过 $emit 的方式是最好的方式</span>
         <!--selectFunc 选择完成的回调      searchList 下拉列表的数据-->
         <search @selectFunc="selectFunc" :searchList="searchList" :selectValue="selectValue"></search>
     </section>
 </template>
 
 <script>
-    import search from '../components/search/search'
+    import search from '../../components/search/search'
     export default {
         name: "self_component",
         components: {search},
@@ -39,7 +38,7 @@
         width: 100%;
         .g-banner{
             width: 100%;
-            background-image: url(../assets/img/logo.png);
+            background-image: url(../../assets/img/logo.png);
             background-repeat: no-repeat;
             background-size: 100% 100%;
             position: relative;

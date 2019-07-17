@@ -14,6 +14,8 @@
     <div id="div1" @click="changemsg">
       <p>{{ message }}</p>
     </div>
+
+    <el-input-number v-model="num" @change="handleChange" :min="1" :max="10" label="描述文字"></el-input-number>
   </div>
 </template>
 
@@ -22,62 +24,95 @@ export default {
   name: 'HelloWorld',
   data() {
     return {
-      message: '今天是周五啊！！！'
+      message: '今天是周五啊！！！',
+      num: 1,
     }
   },
-  beforeCreate() {
-    console.group('beforeCreate 创建前状态===============》');
-    console.log("%c%s", "color:red", "el     : " + this.$el); //undefined
-    console.log("%c%s", "color:red", "data   : " + this.$data); //undefined
-    console.log("%c%s", "color:red", "message: " + this.message)
+  // beforeCreate() {
+  //   console.group('beforeCreate 创建前状态===============》');
+  //   console.log("%c%s", "color:red", "el     : " + this.$el); //undefined
+  //   console.log("%c%s", "color:red", "data   : " + this.$data); //undefined
+  //   console.log("%c%s", "color:red", "message: " + this.message)
+  // },
+  // created() {
+  //   console.group('created 创建完毕状态===============》');
+  //   console.log("%c%s", "color:red", "el     : " + this.$el); //undefined
+  //   console.log("%c%s", "color:red", "data   : " + this.$data); //已被初始化
+  //   console.log("%c%s", "color:red", "message: " + this.message); //已被初始化
+  // },
+  // beforeMount() {
+  //   console.group('beforeMount 挂载前状态===============》');
+  //   console.log("%c%s", "color:red", "el     : " + (this.$el)); //已被初始化
+  //   console.log(this.$el);
+  //   console.log("%c%s", "color:red", "data   : " + this.$data); //已被初始化
+  //   console.log("%c%s", "color:red", "message: " + this.message); //已被初始化
+  // },
+  // mounted() {
+  //   console.group('mounted 挂载结束状态===============》');
+  //   console.log("%c%s", "color:red", "el     : " + this.$el); //已被初始化
+  //   console.log(this.$el);
+  //   console.log("%c%s", "color:red", "data   : " + this.$data); //已被初始化
+  //   console.log("%c%s", "color:red", "message: " + this.message); //已被初始化
+  // },
+  // beforeUpdate() {
+  //   console.group('beforeUpdate 更新前状态===============》');
+  //   console.log("%c%s", "color:red", "el     : " + this.$el);
+  //   console.log(this.$el);
+  //   console.log("%c%s", "color:red", "data   : " + this.$data);
+  //   console.log("%c%s", "color:red", "message: " + this.message);
+  // },
+  // updated() {
+  //   console.group('updated 更新完成状态===============》');
+  //   console.log("%c%s", "color:red", "el     : " + this.$el);
+  //   console.log(this.$el);
+  //   console.log("%c%s", "color:red", "data   : " + this.$data);
+  //   console.log("%c%s", "color:red", "message: " + this.message);
+  // },
+  // beforeDestroy() {
+  //   console.group('beforeDestroy 销毁前状态===============》');
+  //   console.log("%c%s", "color:red", "el     : " + this.$el);
+  //   console.log(this.$el);
+  //   console.log("%c%s", "color:red", "data   : " + this.$data);
+  //   console.log("%c%s", "color:red", "message: " + this.message);
+  // },
+  // destroyed() {
+  //   console.group('destroyed 销毁完成状态===============》');
+  //   console.log("%c%s", "color:red", "el     : " + this.$el);
+  //   console.log(this.$el);
+  //   console.log("%c%s", "color:red", "data   : " + this.$data);
+  //   console.log("%c%s", "color:red", "message: " + this.message);
+  // },
+  beforeCreate() {   // 在实例创建之后，在数据初始化之前被调用
+    console.log('beforeCreated-1')
   },
-  created() {
-    console.group('created 创建完毕状态===============》');
-    console.log("%c%s", "color:red", "el     : " + this.$el); //undefined
-    console.log("%c%s", "color:red", "data   : " + this.$data); //已被初始化
-    console.log("%c%s", "color:red", "message: " + this.message); //已被初始化
+  created() { // 在数据初始化之后被调用，如果你的页面进来的时候就调用接口,那么created是第一选择
+    console.log('created-2')
   },
-  beforeMount() {
-    console.group('beforeMount 挂载前状态===============》');
-    console.log("%c%s", "color:red", "el     : " + (this.$el)); //已被初始化
-    console.log(this.$el);
-    console.log("%c%s", "color:red", "data   : " + this.$data); //已被初始化
-    console.log("%c%s", "color:red", "message: " + this.message); //已被初始化
+  beforeMount() { // 在数据渲染之前被调用
+    console.log('beforeMount-3')
   },
-  mounted() {
-    console.group('mounted 挂载结束状态===============》');
-    console.log("%c%s", "color:red", "el     : " + this.$el); //已被初始化
-    console.log(this.$el);
-    console.log("%c%s", "color:red", "data   : " + this.$data); //已被初始化
-    console.log("%c%s", "color:red", "message: " + this.message); //已被初始化
+  mounted() { // 实例创建完成、数据初始化、渲染页面数据后，才被调用
+    console.log('mounted-4')
   },
-  beforeUpdate() {
-    console.group('beforeUpdate 更新前状态===============》');
-    console.log("%c%s", "color:red", "el     : " + this.$el);
-    console.log(this.$el);
-    console.log("%c%s", "color:red", "data   : " + this.$data);
-    console.log("%c%s", "color:red", "message: " + this.message);
+  beforeUpdate() { // 在数据改变时被调用
+    console.log('beforeUpdate-5')
   },
-  updated() {
-    console.group('updated 更新完成状态===============》');
-    console.log("%c%s", "color:red", "el     : " + this.$el);
-    console.log(this.$el);
-    console.log("%c%s", "color:red", "data   : " + this.$data);
-    console.log("%c%s", "color:red", "message: " + this.message);
+  updated() { // 数据被更新之后
+    console.log('updated-6')
   },
-  beforeDestroy() {
-    console.group('beforeDestroy 销毁前状态===============》');
-    console.log("%c%s", "color:red", "el     : " + this.$el);
-    console.log(this.$el);
-    console.log("%c%s", "color:red", "data   : " + this.$data);
-    console.log("%c%s", "color:red", "message: " + this.message);
+
+  //keep-alive生命周期有两个 (activated , deactivated)
+  activated() { // keep-alive 组件激活时调用，也就是说在路由切换时被调用，注意要配合keep-alive使用才会被调用, <keep-alive>
+    // 可以看下别人写的 https://www.cnblogs.com/sysuhanyf/p/7454530.html
   },
-  destroyed() {
-    console.group('destroyed 销毁完成状态===============》');
-    console.log("%c%s", "color:red", "el     : " + this.$el);
-    console.log(this.$el);
-    console.log("%c%s", "color:red", "data   : " + this.$data);
-    console.log("%c%s", "color:red", "message: " + this.message);
+  deactivated(){// keep-alive 组件停用时调用，也可以理解成在路由切换的会自动停用组件，
+    // 可以看下别人写的 https://www.cnblogs.com/sysuhanyf/p/7454530.html
+  },
+  beforeDestroy() { // 实例销毁前被调用
+    console.log('beroreDestroy-9')
+  },
+  destroyed() { //实例销毁后被调用
+    console.log('destroyed-10')
   },
   methods: {
     changemsg() {
@@ -88,6 +123,9 @@ export default {
       console.log("%c%s", "color:red", "data   : " + this.$data);
       console.log("%c%s", "color:red", "message: " + this.message);
     },
+    handleChange(value) {
+      console.log(value);
+    }
   }
 }
 </script>

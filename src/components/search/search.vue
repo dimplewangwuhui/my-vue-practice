@@ -53,7 +53,6 @@
         width: 250px;
         height: auto;
         position: relative;
-        margin-left: 20px;
         box-sizing: border-box;
     }
     .f-searchIn{

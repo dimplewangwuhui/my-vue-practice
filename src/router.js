@@ -15,13 +15,20 @@ const nextTick = () => import('@/views/nextTick');
 const vue_router = () => import('@/views/vue_router');
 const if_show = () => import('@/views/if_show');
 const decorate = () => import('@/views/decorate');
-const css = () => import('@/views/css');
-const position = () => import('@/views/position');
 const regexp = () => import('@/views/regexp');
 const others = () => import('@/views/others');
-const self_component = () => import('@/views/self_component');
-const child1 = () => import('@/views/child1');
-const child2 = () => import('@/views/child2');
+
+const self_component = () => import('@/views/component/self_component');
+const parent = () => import('@/views/component/parent');
+const child1 = () => import('@/views/component/child1');
+const child2 = () => import('@/views/component/child2');
+const child3 = () => import('@/views/component/child3');
+const child4 = () => import('@/views/component/child4');
+
+const css = () => import('@/views/style/css');
+const position = () => import('@/views/style/position');
+
+const first = () => import('@/views/ES6/first');
 
 
 Vue.use(Router);  //如果在一个模块化工程中使用它，必须要通过 Vue.use() 明确地安装路由功能
@@ -46,7 +53,7 @@ const router = new Router({
                         { path: '/if_show', name: '条件渲染', component: if_show,  meta: {path: '/if_show'}},
                         { path: '/decorate', name: '修饰符', component: decorate,  meta: {path: '/decorate'}},
                         { path: '/mutation_method', name: '数组方法', component: mutation_method,  meta: {path: '/mutation_method'}},
-                        { path: '/HelloWorld', name: '钩子函数', component: HelloWorld,  meta: {path: '/HelloWorld'}},
+                        { path: '/HelloWorld', name: '生命周期', component: HelloWorld,  meta: {path: '/HelloWorld'}},
                         { path: '/tree', name: '树形控件', component: tree,  meta: {path: '/tree'}},
                         { path: '/nextTick', name: 'nextTick', component: nextTick,  meta: {path: '/nextTick'}},
                         { path: '/regexp', name: '正则表达', component: regexp,  meta: {path: '/regexp'}},
@@ -59,8 +66,11 @@ const router = new Router({
                     component: redirect,
                     children: [
                         { path: '/self_component', name: '自定义组件', component: self_component,  meta: {path: '/self_component'}},
-                        { path: '/child1', name: '兄弟组件1', component: child1,  meta: {path: '/child1'}},
-                        { path: '/child2', name: '兄弟组件2', component: child2,  meta: {path: '/child2'}},
+                        { path: '/parent', name: '父组件', component: parent,  meta: {path: '/parent'}},
+                        { path: '/child1', name: '兄弟组件1', component: child1, hidden: true, meta: {path: '/child1'}},
+                        { path: '/child2', name: '兄弟组件2', component: child2, hidden: true, meta: {path: '/child2'}},
+                        { path: '/child3', name: 'A组件', component: child3, meta: {path: '/child3'}},
+                        { path: '/child4', name: 'B 组件', component: child4, meta: {path: '/child4'}},
                     ]
                 },
                 {
@@ -68,8 +78,16 @@ const router = new Router({
                     name: '样式',
                     component: redirect,
                     children: [
-                        { path: '/css', name: '过渡动画', component: css,  meta: {path: '/css'}},
+                        { path: '/css', name: '过渡动画', component: css, meta: {path: '/css'}},
                         { path: '/position', name: '浮动定位', component: position,  meta: {path: '/position'}},
+                    ]
+                },
+                {
+                    path: '/',
+                    name: 'ES6',
+                    component: redirect,
+                    children: [
+                        { path: '/first', name: '首页', component: first, meta: {path: '/first'}},
                     ]
                 },
             ]
