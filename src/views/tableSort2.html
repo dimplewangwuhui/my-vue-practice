@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>行拖动</title>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <script>
+        window.onload = function(){
+            //绑定事件
+            var addEvent = document.addEventListener ? function(el,type,callback){
+                el.addEventListener( type, callback, !1 );
+            } : function(el,type,callback){
+                el.attachEvent( "on" + type, callback );
+            }
+            //精确获取样式
+            var getStyle = document.defaultView ? function(el,style){
+                return document.defaultView.getComputedStyle(el, null).getPropertyValue(style)
+            } : function(el,style){
+                style = style.replace(/\-(\w)/g, function($, $1){
+                    return $1.toUpperCase();
+                });
+                return el.currentStyle[style];
+            }
+            var dragManager;
+            var startRowIndex;
+            var startRowId;
+            var endRowIndex;
+            var endRowId;
+            var endIndexId = [];
+            dragManager = {
+                y: 0,
+                draging: function (e) {   //mousemove时拖动行
+                    var handler = dragManager.handler;
+                    console.log('1:', handler);
+                    if (handler) {
+                        e = e || event;
+                        console.log('2:', e);
+                        if (window.getSelection) {//w3c
+                            window.getSelection().removeAllRanges();
+                        } else if (document.selection) {
+                            document.selection.empty();//IE
+                        }
+                        var y = e.clientY;
+                        console.log('3:', y);
+                        var down = y > dragManager.y;//是否向下移动
+                        console.log('4:', down);
+                        var tr = document.elementFromPoint(e.clientX, e.clientY);
+                        console.log('5:', tr);
+                        if (tr && tr.nodeName == "TD") {
+                            tr = tr.parentNode
+                            dragManager.y = y;
+                            if (handler !== tr) {
+                                tr.parentNode.insertBefore(handler, (down ? tr.nextSibling : tr));
+                            }
+                        }
+                        ;
+                    }
+                },
+                dragStart: function (e) {
+                    e = e || event;
+                    var handler = e.target || e.srcElement;
+                    startRowIndex = handler.parentElement.rowIndex;
+                    console.log('----startRowIndex', startRowIndex);  //行索引
+                    startRowId = $(".table").find("tr").eq(startRowIndex).children("td").eq(0).text();
+                    console.log('----startRowId', startRowId);
+                    // console.log('----', handler.innerText);  // 所点击td的值
+                    if (handler.nodeName === "TD") {
+                        handler = handler.parentNode;
+                        dragManager.handler = handler;
+                        // console.log('----handler:', handler);   // 获取所拖动的行
+                        if (!handler.getAttribute("data-background")) {
+                            handler.setAttribute("data-background", getStyle(handler, "background-color"))
+                        }
+                        //显示为可移动的状态
+                        handler.style.backgroundColor = "#ccc";
+                        handler.style.cursor = "move";
+                        dragManager.y = e.clientY;
+                    }
+                },
+                dragEnd: function () {
+                    var handler = dragManager.handler;
+                    console.log('****', handler);
+                    if (handler) {
+                        handler.style.backgroundColor = handler.getAttribute("data-background");
+                        handler.style.cursor = "default";
+                        dragManager.handler = null;
+                    }
+                    $("#table > tbody tr").each(function(){
+                        let id = $(this).find("td").eq(0).text();
+                        let index = $(this).index()+1;
+                        endIndexId.push({id:id,index:index})
+                    });
+                    console.log('999999', endIndexId);
+                    endIndexId.forEach(item => {
+                        if(item.id === startRowId){
+                            endRowIndex = item.index;
+                            console.log('endRowIndex:', endRowIndex)
+                        }
+                    })
+                    if(endRowIndex < startRowIndex){
+                        for (var i = 1; i <= startRowIndex; i++) {
+                            console.log('上移了的id', $(".table").find("tr").eq(i).children("td").eq(0).text())
+                        }
+                    }else if(endRowIndex > startRowIndex){
+                        console.log('下移了');
+
+                    }
+                },
+                main: function (el) {
+                    addEvent(el, "mousedown", dragManager.dragStart);
+                    addEvent(document, "mousemove", dragManager.draging);
+                    addEvent(document, "mouseup", dragManager.dragEnd);
+
+                }
+            };
+            var el = document.getElementById("table");
+            dragManager.main(el);
+
+        }
+
+    </script>
+    <style>
+        .table{
+            width:60%;
+            border: 1px solid red;
+            border-collapse: collapse;
+        }
+        .table td{
+            border: 1px solid red;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>行拖动</h1>
+<table  id="table" class="table">
+    <tbody>
+    <tr>
+        <th>ID</th>
+        <th>IDD</th>
+        <th>描述</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>One</td>
+        <td>dom.require</td>
+    </tr>
+    <tr id="2" >
+        <td class="2">2</td>
+        <td>Two</td>
+        <td>ControlJS </td>
+    </tr>
+    <tr id="3" >
+        <td class="3">3</td>
+        <td>Three</td>
+        <td>HeadJS</td>
+    </tr>
+    <tr id="4" >
+        <td class="4">4</td>
+        <td>Four</td>
+        <td>LAB.js</td>
+    </tr>
+    <tr id="5" >
+        <td class="5">5</td>
+        <td>Five</td>
+        <td>$script.js</td>
+    </tr>
+    <tr id="6" >
+        <td class="6">6</td>
+        <td>Six</td>
+        <td>NBL.js</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
+
+
