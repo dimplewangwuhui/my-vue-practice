@@ -1,10 +1,14 @@
 module.exports = {
+  //presets字段设定转码规则。
   presets: [
     '@vue/app',
-    [ '@babel/preset-env', {   // 在babel.config.js文件中引用程序包babel-preset-env时，需要引用'@babel/preset-env'，而不是'env'.
-      // 借助插件babel-preset-env,下面这个配置说的是babel对es6,es7,es8进行转码
-      'modules': false
-    }
+    // 在babel.config.js文件中引用程序包babel-preset-env时，需要引用'@babel/preset-env'，而不是'env'。
+    // 借助插件babel-preset-env,下面这个配置说的是babel对es6,es7,es8进行转码。
+    // 最新转码规则 npm install --save-dev @babel/preset-env
+    [ '@babel/preset-env',
+      {
+        'modules': false
+      }
     ]
   ],
   plugins: [

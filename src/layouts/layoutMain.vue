@@ -7,6 +7,7 @@
       </el-breadcrumb-item>
     </el-breadcrumb>
     <router-view></router-view>
+    <iframe src="https://zhanyuzhang.github.io/lovely-cat/cat.html" id="catIframe" frameborder="0"></iframe>
   </div>
 </template>
 
@@ -32,4 +33,12 @@ export default {
   .breadcrumb {margin-bottom: 30px}
   .breadcrumb-container {display: flex;}
   .breadcrumb-container > .title {flex:1;}
+
+  #catIframe {
+    position: absolute;
+    width: 400px;
+    padding: 50px 0;
+    z-index: 1000;
+    right: 0;
+  }
 </style>

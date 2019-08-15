@@ -13,6 +13,7 @@
             <tr><td>\s</td><td>匹配任何非空白字符。等价于 [^ \f\n\r\t\v]</td><td>wang wu hui 666</td><td>str.match(/\S/)</td><td>{{res_S}}</td></tr>
             <tr><td>\b</td><td>匹配一个单词边界，也就是指单词和空格间的位置</td><td>wang wu hui 666</td><td>str.match(/\bw/g)</td><td>{{res_b}}</td></tr>
             <tr><td>\B</td><td>匹配非单词边界</td><td>wang wu hui 666</td><td>str.match(/\B/g)</td><td>{{res_B}}</td></tr>
+            <tr><td>\w</td><td>匹配字母或数字或下划线或汉字,等价于[A-Za-z0-9_]</td></tr>
             <tr><td>^</td><td>匹配输入字符串的开始位置</td></tr>
             <tr><td>$</td><td>匹配输入字符串的结束位置</td></tr>
             <tr><td>*</td><td>匹配前面的子表达式零次或多次</td></tr>
@@ -31,6 +32,22 @@
             <tr><td>.*?</td><td>非贪婪模式，匹配尽可能少的字符</td><td>abcdefc</td><td>str.match(/ab.*?c/)</td><td>{{res_ftl}}</td></tr>
             <tr><td colspan="5">g: 全局匹配 i: 忽略大小写 gi: 全局匹配 + 忽略大小</td></tr>
         </table>
+        <div style="margin-top: 20px">
+            <el-form :model="form" :rules="formRules" ref="form">
+                <el-form-item label="姓名" prop="name">
+                    <el-input v-model="form.name" style="width: 300px"></el-input>
+                </el-form-item>
+                <el-form-item label="电话" prop="tel">
+                    <el-input v-model="form.tel" style="width: 300px"></el-input>
+                </el-form-item>
+                <el-form-item label="邮箱" prop="email">
+                    <el-input v-model="form.email" style="width: 300px"></el-input>
+                </el-form-item>
+                <el-form-item label="身份证号：" prop="id_num">
+                    <el-input v-model="form.id_num" style="width: 300px"></el-input>
+                </el-form-item>
+            </el-form>
+        </div>
     </div>
 </template>
 
@@ -38,6 +55,61 @@
     export default {
         name: "regexp",
         data() {
+            let checkName = (rule, value, callback) => {
+                if (value) {
+                    if (value.length > 4) {
+                        callback(new Error('名字最长为4位，请重新输入！'))
+                    } else {
+                        let reg=/^[\u4E00-\u9FA5]{2,4}$/;   /*定义验证表达式*/
+                        let result = reg.test(value);     /*进行验证*/
+                        if(!result) {
+                            callback(new Error('名字必须是中文，请重新输入！'))
+                        }else {
+                            callback()
+                        }
+                    }
+                }
+            };
+            let checkTel = (rule, value, callback) => {
+                if (value) {
+                    const reg = /^1[3|4|5|7|8][0-9]\d{8}$/;
+                    if (reg.test(value)) {
+                        callback()
+                    } else {
+                        callback(new Error('请填写正确的手机号'))
+                    }
+                }
+            };
+            let checkID = (rule, value, callback) => {
+                if (value) {
+                    let aCity ={11: '北京', 12: '天津', 13: '河北', 14: '山西', 15: '内蒙古', 21: '辽宁', 22: '吉林',
+                        23: '黑龙江', 31: '上海', 32: '江苏', 33: '浙江', 34: '安徽', 35: '福建', 36: '江西', 37: '山东',
+                        41: '河南', 42: '湖北', 43: '湖南', 44: '广东', 45: '广西',46: '海南', 50: '重庆', 51: '四川', 52: '贵州', 53: '云南',
+                        54: '西藏', 61: '陕西', 62: '甘肃', 63: '青海', 64: '宁夏', 65: '新疆', 71: '台湾', 81: '香港', 82: '澳门'}
+                    let iSum = 0
+                    if (!/^\d{17}(\d|x)$/i.test(value)) {
+                        return callback(new Error('您输入的身份证长度或格式错误'))
+                    }
+                    value = value.replace(/x$/i, 'a');
+                    if (aCity[parseInt(value.substr(0, 2))] == null) {
+                        return callback(new Error('请填写正确的身份证号'))
+                    }
+                    let sBirthday = value.substr(6, 4) + '-' + Number(value.substr(10, 2)) + '-' + Number(value.substr(12,2))
+                    let d = new Date(sBirthday.replace(/-/g, '/'));
+                    if (sBirthday !== (d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate())) {
+                        return callback(new Error('请填写正确的身份证号'))
+                    }
+                    for (var i = 17; i >= 0; i--) {
+                        iSum += (Math.pow(2, i) % 11) * parseInt(value.charAt(17 - i), 11)
+                    }
+                    if (iSum % 11 !== 1) {
+                        return callback(new Error('请填写正确的身份证号'))
+                    }
+                    return callback()
+                } else {
+                    callback(new Error('请填写您的身份证号'))
+                }
+            };
             return {
                 res:'',
                 res_d:'',
@@ -48,6 +120,30 @@
                 res_B:'',
                 res_tl:'',
                 res_ftl:'',
+                form: {
+                    name:'',
+                    tel:'',
+                    email:'',
+                    id_num:''
+                },
+                formRules: {
+                    name: [
+                        {required: true, message: '请输入姓名', trigger: 'blur'},
+                        {validator: checkName, trigger: ['blur', 'change']}
+                    ],
+                    tel: [
+                        {required: true, message: '请填写您的手机号', trigger: 'blur'},
+                        { validator: checkTel, trigger: 'blur' }
+                    ],
+                    email: [
+                        {required: true, message: '请填写您的邮箱', trigger: 'blur'},
+                        {type: 'email', message: '请填写正确的邮箱地址', trigger: ['blur', 'change']}
+                    ],
+                    id_num: [
+                        {required: true, message: '请填写您的身份证号', trigger: 'blur'},
+                        { validator: checkID, trigger: 'blur' }
+                    ],
+                }
             }
         },
         mounted() {
@@ -66,6 +162,9 @@
             var str_tl = 'abcdefc';
             this.res_tl = str_tl.match(/ab.*c/);
             this.res_ftl = str_tl.match(/ab.*?c/);
+        },
+        methods:{
+
         }
     }
 </script>

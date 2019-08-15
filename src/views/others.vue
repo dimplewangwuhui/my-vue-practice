@@ -127,6 +127,7 @@
         <div>2、非vue官方库不支持new Vue()方式</div>
         <div>3、每一个vue组件都是Vue的实例，所以组件内this可以拿到Vue.prototype上添加的属性和方法</div>
         <div>4、Vue的插件是一个对象, 就像Element;插件对象必须有install字段;install字段是一个函数;初始化插件对象需要通过Vue.use()</div>
+
     </div>
 </template>
 
@@ -181,7 +182,7 @@
                     {method1:'Set.prototype.delete(value)',note1:'删除某个值，返回一个布尔值，表示删除是否成功',method2:'Set.prototype.entries()',note2:'返回键值对的遍历器'},
                     {method1:'Set.prototype.has(value)',note1:'返回一个布尔值，表示该值是否为Set的成员',method2:'Set.prototype.forEach()',note2:'使用回调函数遍历每个成员'},
                     {method1:'Set.prototype.clear()',note1:'清除所有成员，没有返回值',method2:'',note2:''},
-                ]
+                ],
             }
         },
 
@@ -279,14 +280,17 @@
                     newMonth = '0'+newMonth
                 }
                 var newDate = date.getFullYear()+'-'+newMonth+'-'+date.getDate();
+                var resultTime;
                 if(date.toLocaleTimeString()[0] === '下'){
                     let newTime = date.toLocaleTimeString().replace('下午','');
                     let newListTime = newTime.split(':');
                     newListTime[0] = Number(newListTime[0])+12;
-                    let resultTime = newListTime.join(':');
-                    let result = newDate +' '+resultTime;
-                    this.getIntervalDate(result, '2019-10-01 00:00:00');
+                    resultTime = newListTime.join(':');
+                }else {
+                    resultTime = date.toLocaleTimeString().replace('上午','');
                 }
+                let result = newDate +' '+resultTime;
+                this.getIntervalDate(result, '2019-10-01 00:00:00');
             },
             // 导出excel
             FnToExcel() {

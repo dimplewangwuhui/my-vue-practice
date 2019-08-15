@@ -11,8 +11,8 @@ module.exports = {
     publicPath: '/',
     // 输出文件目录
     outputDir: 'dist',
-    // eslint-loader 是否在保存的时候检查
-    lintOnSave: true,
+    // eslint-loader 是否在保存的时候检查(默认true)
+    lintOnSave: process.env.NODE_ENV !== 'production',
     // 放置静态资源的目录
     assetsDir: 'assets',
     // 默认情况下，生成静态资源在它们的文件名中包含了hash以便更好的控制缓存。
@@ -36,11 +36,18 @@ module.exports = {
     // 请求代理
     devServer: {
         host: 'localhost',
-        port: '8089', // 端口号
+        port: '8080', // 端口号
         https: false,
         open: false, // 配置自动启动浏览器
         hotOnly: true, // 热更新
-        // proxy: { // 反向代理
-        // }
+        proxy: { // 反向代理
+            '/api': {
+                target: 'http://127.0.0.1:8000/api',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/api': ''
+                }
+            }
+        }
     }
 }

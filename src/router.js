@@ -16,8 +16,10 @@ const vue_router = () => import('@/views/vue_router');
 const if_show = () => import('@/views/if_show');
 const decorate = () => import('@/views/decorate');
 const regexp = () => import('@/views/regexp');
+const task = () => import('@/views/task');
 const others = () => import('@/views/others');
 
+// 组件
 const self_component = () => import('@/views/component/self_component');
 const parent = () => import('@/views/component/parent');
 const child1 = () => import('@/views/component/child1');
@@ -25,11 +27,25 @@ const child2 = () => import('@/views/component/child2');
 const child3 = () => import('@/views/component/child3');
 const child4 = () => import('@/views/component/child4');
 
+// 样式
 const css = () => import('@/views/style/css');
 const position = () => import('@/views/style/position');
 
+// ES6
 const first = () => import('@/views/ES6/first');
+const declare = () => import('@/views/ES6/declare');
+const innerObject = () => import('@/views/ES6/innerObject');
+const operator = () => import('@/views/ES6/operator');
+const async = () => import('@/views/ES6/async');
 
+// JavaScript
+const js_others = () => import('@/views/javaScript/js_others');
+
+//其他
+const luckywheel = () => import('@/views/others/luckywheel');
+const tableEdit = () => import('@/views/others/tableEdit');
+const tableEdit2 = () => import('@/views/others/tableEdit2');
+const django = () => import('@/views/others/django');
 
 Vue.use(Router);  //如果在一个模块化工程中使用它，必须要通过 Vue.use() 明确地安装路由功能
 
@@ -47,12 +63,12 @@ const router = new Router({
                     path: '/',
                     name: '练习',
                     component: redirect,
+                    iconClass: 'el-icon-edit-outline',
                     children: [
                         { path: '/', name: '数据绑定', component: mvvm,  meta: {path: '/'}},
                         { path: '/vue_router', name: 'vue路由', component: vue_router,  meta: {path: '/vue_router'}},
                         { path: '/if_show', name: '条件渲染', component: if_show,  meta: {path: '/if_show'}},
                         { path: '/decorate', name: '修饰符', component: decorate,  meta: {path: '/decorate'}},
-                        { path: '/mutation_method', name: '数组方法', component: mutation_method,  meta: {path: '/mutation_method'}},
                         { path: '/HelloWorld', name: '生命周期', component: HelloWorld,  meta: {path: '/HelloWorld'}},
                         { path: '/tree', name: '树形控件', component: tree,  meta: {path: '/tree'}},
                         { path: '/nextTick', name: 'nextTick', component: nextTick,  meta: {path: '/nextTick'}},
@@ -64,6 +80,7 @@ const router = new Router({
                     path: '/',
                     name: '组件',
                     component: redirect,
+                    iconClass: 'el-icon-s-open',
                     children: [
                         { path: '/self_component', name: '自定义组件', component: self_component,  meta: {path: '/self_component'}},
                         { path: '/parent', name: '父组件', component: parent,  meta: {path: '/parent'}},
@@ -77,6 +94,7 @@ const router = new Router({
                     path: '/',
                     name: '样式',
                     component: redirect,
+                    iconClass: 'el-icon-magic-stick',
                     children: [
                         { path: '/css', name: '过渡动画', component: css, meta: {path: '/css'}},
                         { path: '/position', name: '浮动定位', component: position,  meta: {path: '/position'}},
@@ -86,8 +104,36 @@ const router = new Router({
                     path: '/',
                     name: 'ES6',
                     component: redirect,
+                    iconClass: 'el-icon-bangzhu',
                     children: [
-                        { path: '/first', name: '首页', component: first, meta: {path: '/first'}},
+                        { path: '/first', name: '思维导图', component: first, meta: {path: '/first'}},
+                        { path:'/declare', name: '声明与表达式', component: declare, meta: {path: '/declare'}},
+                        { path:'/innerObject', name: '内置对象', component: innerObject, meta: {path: '/innerObject'}},
+                        { path:'/operator', name: '运算符与语句', component: operator, meta: {path: '/operator'}},
+                        { path:'/async', name: '异步编程', component: async, meta: {path: '/async'}},
+                    ]
+                },
+                {
+                    path: '/',
+                    name: 'JavaScript',
+                    component: redirect,
+                    iconClass: 'el-icon-discount',
+                    children: [
+                        { path: '/mutation_method', name: '数组方法', component: mutation_method,  meta: {path: '/mutation_method'}},
+                        { path: '/task', name: '宏微任务', component: task,  meta: {path: '/task'}},
+                        { path: '/js_others', name: '其它', component: js_others, meta: {path: '/js_others'}},
+                    ]
+                },
+                {
+                    path: '/',
+                    name: '其他',
+                    component: redirect,
+                    iconClass: 'el-icon-discount',
+                    children: [
+                        { path: '/luckywheel', name: '幸运转盘', component: luckywheel,  meta: {path: '/luckywheel'}},
+                        { path: '/tableEdit', name: '表格编辑', component: tableEdit,  meta: {path: '/tableEdit'}},
+                        { path: '/tableEdit2', name: '树结构表格编辑', component: tableEdit2,  meta: {path: '/tableEdit2'}},
+                        { path: '/django', name: 'django前后端分离', component: django,  meta: {path: '/django'}},
                     ]
                 },
             ]

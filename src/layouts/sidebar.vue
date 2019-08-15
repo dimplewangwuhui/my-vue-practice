@@ -136,7 +136,7 @@ export default {
     }
   },
   created () {
-      console.log('====', this.$router.options.routes)
+
   },
   methods: {
     handleOpen () {
@@ -167,6 +167,7 @@ export default {
       return this.sidebar.status
     },
     routes () {
+      console.log('........', this.$router.options.routes)
       return this.$router.options.routes
     },
     currentView () {
