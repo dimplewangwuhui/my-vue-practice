@@ -5,7 +5,7 @@
             {{item.title}}
         </router-link>
 
-        <div style="color: #FC796B; font-size: 20px; margin: 10px 0">路由传递参数的方式：</div>
+        <div style="color: #FC796B; font-size: 20px; margin: 10px 0">路由传递参数的方式 ：</div>
         <div>query要用path来引入，params要用name来引入。</div>
         <!-- 带查询参数，下面的结果为 /?plan=private -->
         <router-link :to="{ path: '/', query: { plan: 'private' }}">点击跳转</router-link>
