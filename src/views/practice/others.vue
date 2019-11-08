@@ -7,8 +7,8 @@
 
         <div style="color: #FC796B; font-size: 20px; margin: 10px 0">路由传递参数的方式：</div>
         <div>query要用path来引入，params要用name来引入。</div>
-        <!-- 带查询参数，下面的结果为 /?plan=private -->
-        <router-link :to="{ path: '/', query: { plan: 'private' }}">点击跳转</router-link>
+        <!-- 带查询参数，下面的结果为 /?id=123 -->
+        <router-link :to="{ path: '/', query: { id: 123 }}">点击跳转</router-link>
         <router-link :to="{ name: '数据绑定', params: { id: 123 }}">点击跳转</router-link>
 
         <div style="color: #FC796B; font-size: 20px; margin: 10px 0">watch数据监控：</div>
@@ -65,7 +65,7 @@
 
         <div style="color: #FC796B; font-size: 20px; margin: 10px 0">img加载图片失败时，使用默认图片：</div>
         <div>1、img标签自带onError属性，当图片加载失败时，触发error事件：</div>
-        <!--<img src="../assets/img/logo.png" onerror="this.src='http://ww.jpg'">-->
+        <img src="../../assets/img/logo.png" width="100" onerror="this.src='../../assets/img/logo.png'">
         <div>2、jQuery的error事件</div>
         <!--$('img').error(function(){-->
             <!--$(this).attr('src',"httP://ww.jpg")-->
@@ -76,12 +76,12 @@
         <!--})-->
 
         <div style="color: #FC796B; font-size: 20px; margin: 10px 0">v-cloak属性：</div>
-        <div>vue的模板建议都加上v-cloak属性，网页加载的时候，先加载html，再加载js，网络不太好的情况下，页面会看到没有渲染的模板，不太美观。</div>
+        <div>vue的模板建议都加上v-cloak属性，网页加载的时候，先加载html，再加载js，网络不太好的情况下，页面会看到没有渲染的模板，会显示出 Vue 源代码，不太美观。</div>
         <div>在模板元素上加`v-cloak`属性，同时加一个样式， [v-cloak]{ display:none; }</div>
         <div>没有渲染的模板直接不显示给用户，当模板渲染后，vue会把v-cloak属性删除</div>
 
         <div style="color: #FC796B; font-size: 20px; margin: 10px 0">时间对象：</div>
-        <div style="font-size: 20px; margin: 10px 0">{{timeDifference}}</div>
+        <div style="font-size: 20px; margin: 10px 0; color: royalblue">{{timeDifference}}</div>
         <div>getTime——获取当前时间(从1970.1.1开始的毫秒数)<span style="margin-left: 20px; color: #FC796B">{{getTime}}</span></div>
         <div>getDate——获取当前日(1-31)<span style="margin-left: 20px; color: #FC796B">{{getDate}}</span></div>
         <div>getFullYear——获取完整的年份<span style="margin-left: 20px; color: #FC796B">{{getFullYear}}</span></div>
@@ -93,6 +93,11 @@
         <div>toLocaleDateString()——获取当前日期<span style="margin-left: 20px; color: #FC796B">{{toLocaleDateString}}</span></div>
         <div>toLocaleTimeString()——获取当前时间<span style="margin-left: 20px; color: #FC796B">{{toLocaleTimeString}}</span></div>
         <div>toLocaleString()——获取当前日期与时间<span style="margin-left: 20px; color: #FC796B">{{toLocaleString}}</span></div>
+
+        <div style="color: #FC796B; font-size: 20px; margin: 10px 0">过滤器 | 时间格式化：</div>
+        <div id="app">
+            {{date | formatDate }}
+        </div>
 
         <div style="color: #FC796B; font-size: 20px; margin: 10px 0">setTimeout 0 有什么作用：</div>
         <div>由于js是单线程执行的，无法同时执行多段代码，当某段代码在执行时，所有后续任务必须等待从而排成了一个队列，但上段代码执行完后，在从队列中取出下一个任务；
@@ -134,6 +139,8 @@
 <script>
     import FileSaver from 'file-saver';
     import XLSX from 'xlsx';
+    import {message} from 'element-ui';
+    import dateFormat from '../../assets/js/date'
     export default {
         name: "others",
         data() {
@@ -153,6 +160,7 @@
                 obj2:{
                     a: ''
                 },
+                date: new Date(),
                 timer:null,
                 array1:[1,2,3,4,5,6,7,8,9],
                 toggle:'',
@@ -189,7 +197,7 @@
 
         methods: {
             showIndicator(i) {
-                this.$alert('index: '+ i);
+                alert('index: '+ i);
             },
             changeTestSet1() {
                 this.testSet[0] = 'aa';
@@ -210,12 +218,12 @@
                 // this.$set(this.obj, 'c', '我是obj里的c的值');
             },
             updateArry() {
-                // this.testSet2 = this.testSet;
-                this.testSet2 = [...this.testSet];   // this.testSet2 = this.testSet.slice(0);
+                // this.testSet2 = this.testSet;  // 浅拷贝（原数组也会发生改变）
+                this.testSet2 = [...this.testSet];   // this.testSet2 = this.testSet.slice(0);  深拷贝
                 this.testSet2.push('w');
             },
             updateObj() {
-                // this.obj2 = this.obj;
+                // this.obj2 = this.obj;  // 浅拷贝（原对象也会发生改变）
                 this.obj2 = JSON.parse(JSON.stringify(this.obj));
                 this.obj2.a = '我变了'
             },
@@ -290,7 +298,7 @@
                     resultTime = date.toLocaleTimeString().replace('上午','');
                 }
                 let result = newDate +' '+resultTime;
-                this.getIntervalDate(result, '2019-10-01 00:00:00');
+                this.getIntervalDate(result, '2020-01-01 00:00:00');
             },
             // 导出excel
             FnToExcel() {
@@ -304,7 +312,7 @@
                 try {
                     FileSaver.saveAs(
                         new Blob([wbout], { type: 'application/octet-stream' }),
-                        `名字${time.getTime()}.xlsx` // 文件名
+                        `${time.getTime()}.xlsx` // 文件名
                     );
                 } catch (e) {
                     if (typeof console !== 'undefined') {
@@ -374,6 +382,17 @@
             console.log(Date.UTC(2019,7,12,15,49,23));
 
             setInterval(this.checkDate, 1000);
+
+            this.timer = setInterval(() => {
+                this.date=new Date()
+            }, 1000)
+        },
+
+        filters: {
+            formatDate(time) {
+                let date = new Date(time);
+                return dateFormat.formatDate(date, "yyyy-MM-dd hh:mm:ss");
+            }
         }
     }
 </script>

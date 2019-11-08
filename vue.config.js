@@ -36,17 +36,17 @@ module.exports = {
     // 请求代理
     devServer: {
         host: 'localhost',
-        port: '8080', // 端口号
+        port: '8083', // 端口号
         https: false,
         open: false, // 配置自动启动浏览器
         hotOnly: true, // 热更新
         proxy: { // 反向代理
             '/api': {
-                target: 'http://127.0.0.1:8000/api',
+                target: 'http://127.0.0.1:8081/api',
                 changeOrigin: true,
-                pathRewrite: {
-                    '^/api': ''
-                }
+                // pathRewrite: {
+                //     '^/api': ''
+                // }
             }
         }
     }

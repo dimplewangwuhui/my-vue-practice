@@ -7,7 +7,7 @@
       </el-breadcrumb-item>
     </el-breadcrumb>
     <router-view></router-view>
-    <iframe src="https://zhanyuzhang.github.io/lovely-cat/cat.html" id="catIframe" frameborder="0"></iframe>
+    <!--<iframe src="https://zhanyuzhang.github.io/lovely-cat/cat.html" id="catIframe" frameborder="0"></iframe>-->
   </div>
 </template>
 

@@ -10,7 +10,7 @@
             <tr><td>\r</td><td>匹配一个回车符</td></tr>
             <tr><td>\t</td><td>匹配一个制表符</td></tr>
             <tr><td>\s</td><td>匹配任何空白字符，包括空格、制表符、换页符等等</td><td>wang wu hui 666</td><td>str.match(/\s/)</td><td>{{res_s}}</td></tr>
-            <tr><td>\s</td><td>匹配任何非空白字符。等价于 [^ \f\n\r\t\v]</td><td>wang wu hui 666</td><td>str.match(/\S/)</td><td>{{res_S}}</td></tr>
+            <tr><td>\S</td><td>匹配任何非空白字符。等价于 [^ \f\n\r\t\v]</td><td>wang wu hui 666</td><td>str.match(/\S/)</td><td>{{res_S}}</td></tr>
             <tr><td>\b</td><td>匹配一个单词边界，也就是指单词和空格间的位置</td><td>wang wu hui 666</td><td>str.match(/\bw/g)</td><td>{{res_b}}</td></tr>
             <tr><td>\B</td><td>匹配非单词边界</td><td>wang wu hui 666</td><td>str.match(/\B/g)</td><td>{{res_B}}</td></tr>
             <tr><td>\w</td><td>匹配字母或数字或下划线或汉字,等价于[A-Za-z0-9_]</td></tr>
@@ -60,10 +60,10 @@
                     if (value.length > 4) {
                         callback(new Error('名字最长为4位，请重新输入！'))
                     } else {
-                        let reg=/^[\u4E00-\u9FA5]{2,4}$/;   /*定义验证表达式*/
+                        let reg=/^[\u4E00-\u9FA5]{1,4}$/;   /*定义验证表达式*/
                         let result = reg.test(value);     /*进行验证*/
                         if(!result) {
-                            callback(new Error('名字必须是中文，请重新输入！'))
+                            callback(new Error('名字必须是中文，请重新输入！ '))
                         }else {
                             callback()
                         }
@@ -128,7 +128,7 @@
                 },
                 formRules: {
                     name: [
-                        {required: true, message: '请输入姓名', trigger: 'blur'},
+                        {required: true, message: '请输入姓名', rigger: 'blur'},
                         {validator: checkName, trigger: ['blur', 'change']}
                     ],
                     tel: [

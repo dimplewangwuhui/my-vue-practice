@@ -19,8 +19,6 @@
                 'AMsg'
             ]),
             AMessage() {
-                console.log('----');
-                console.log('----', this.AMsg);
                 return this.AMsg
             }
         },

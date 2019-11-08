@@ -262,7 +262,11 @@
             },
         },
         mounted() {
-            this.get_user()
+            this.get_user();
+            var list = []
+            if(list) {
+                console.log('==================')
+            }
         },
         filters: {
             formatDate(value) {

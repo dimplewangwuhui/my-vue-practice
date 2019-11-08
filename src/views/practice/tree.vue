@@ -1,6 +1,6 @@
 <template>
     <div style="padding: 20px; background-color: #fff">
-        <div v-loading="isLoading" class="comp-tree">
+        <div class="comp-tree">
             <el-button class="comp-tr-top" type="primary" size="small" @click="handleAddTop">添加顶级节点</el-button>
             <!-- tree -->
             <el-tree ref="SlotTree"
@@ -59,6 +59,7 @@
 
 <script>
     import api from '@/resource/api'
+    import {Message, MessageBox} from 'element-ui'
 
     export default{
         name: 'tree',
@@ -90,7 +91,7 @@
                 console.log(_node, _data)
                 // 判断是否存在子节点
                 if(_data.children && _data.children.length !== 0){
-                    this.$message.error("此节点有子级，不可删除！")
+                    Message.error("此节点有子级，不可删除！")
                     return false;
                 }else{
                     // 删除操作
@@ -98,7 +99,7 @@
                         this.$nextTick(() => {
                             if(this.$refs.SlotTree){
                                 this.$refs.SlotTree.remove(_data)
-                                this.$message.success("删除成功！")
+                                Message.success("删除成功！")
                             }
                         })
                     }
@@ -143,7 +144,7 @@
                 console.log(_node, _data)
                 // 判断层级
                 if(_node.level >= this.MAX_LEVEL){
-                    this.$message.warning("当前已达到"+ this.MAX_LEVEL + "级，无法新增！")
+                    Message.warning("当前已达到"+ this.MAX_LEVEL + "级，无法新增！")
                     return false;
                 }
 

@@ -121,3 +121,6 @@ svg + span {margin-left:5px;}
 .el-pagination .btn-next:hover, .el-pagination .btn-prev:hover {color: #fc796b;}
 .el-pager li:hover {color: #fc796b;cursor: pointer;}
 
+.el-message-box .el-message-box__header .el-message-box__headerbtn:hover .el-message-box__close{color: #F58A7F}
+
+.title {color: #FC796B; font-size: 20px; margin: 10px 0}

@@ -7,17 +7,18 @@ import store from '@/store';
 // 路由懒加载
 // 当打包构建应用时，JavaScript 包会变得非常大，影响页面加载。
 // 如果我们能把不同路由对应的组件分割成不同的代码块，然后当路由被访问的时候才加载对应组件，这样就更加高效了。
-const mvvm = () => import('@/views/mvvm');
-const HelloWorld = () => import('@/views/HelloWorld');
-const mutation_method = () => import('@/views/mutation_method');
-const tree = () => import('@/views/tree');
-const nextTick = () => import('@/views/nextTick');
-const vue_router = () => import('@/views/vue_router');
-const if_show = () => import('@/views/if_show');
-const decorate = () => import('@/views/decorate');
-const regexp = () => import('@/views/regexp');
-const task = () => import('@/views/task');
-const others = () => import('@/views/others');
+const mvvm = () => import('@/views/practice/mvvm');
+const HelloWorld = () => import('@/views/practice/HelloWorld');
+const mutation_method = () => import('@/views/practice/mutation_method');
+const tree = () => import('@/views/practice/tree');
+const nextTick = () => import('@/views/practice/nextTick');
+const vue_router = () => import('@/views/practice/vue_router');
+const if_show = () => import('@/views/practice/if_show');
+const decorate = () => import('@/views/practice/decorate');
+const regexp = () => import('@/views/practice/regexp');
+const task = () => import('@/views/practice/task');
+const async_await = () => import('@/views/practice/async_await');
+const others = () => import('@/views/practice/others');
 
 // 组件
 const self_component = () => import('@/views/component/self_component');
@@ -40,12 +41,15 @@ const async = () => import('@/views/ES6/async');
 
 // JavaScript
 const js_others = () => import('@/views/javaScript/js_others');
+const json2excel = () => import('@/views/javaScript/json2excel');
 
 //其他
 const luckywheel = () => import('@/views/others/luckywheel');
 const tableEdit = () => import('@/views/others/tableEdit');
 const tableEdit2 = () => import('@/views/others/tableEdit2');
 const django = () => import('@/views/others/django');
+const webssh = () => import('@/views/others/webssh');
+const email = () => import('@/views/others/email');
 
 Vue.use(Router);  //如果在一个模块化工程中使用它，必须要通过 Vue.use() 明确地安装路由功能
 
@@ -73,6 +77,7 @@ const router = new Router({
                         { path: '/tree', name: '树形控件', component: tree,  meta: {path: '/tree'}},
                         { path: '/nextTick', name: 'nextTick', component: nextTick,  meta: {path: '/nextTick'}},
                         { path: '/regexp', name: '正则表达', component: regexp,  meta: {path: '/regexp'}},
+                        { path: '/async_await', name: '同步异步', component: async_await,  meta: {path: '/async_await'}},
                         { path: '/others', name: '其他', component: others,  meta: {path: '/others'}},
                     ]
                 },
@@ -121,6 +126,7 @@ const router = new Router({
                     children: [
                         { path: '/mutation_method', name: '数组方法', component: mutation_method,  meta: {path: '/mutation_method'}},
                         { path: '/task', name: '宏微任务', component: task,  meta: {path: '/task'}},
+                        { path: '/json2excel', name: 'json2excel', component: json2excel, meta: {path: '/json2excel'}},
                         { path: '/js_others', name: '其它', component: js_others, meta: {path: '/js_others'}},
                     ]
                 },
@@ -134,6 +140,8 @@ const router = new Router({
                         { path: '/tableEdit', name: '表格编辑', component: tableEdit,  meta: {path: '/tableEdit'}},
                         { path: '/tableEdit2', name: '树结构表格编辑', component: tableEdit2,  meta: {path: '/tableEdit2'}},
                         { path: '/django', name: 'django前后端分离', component: django,  meta: {path: '/django'}},
+                        { path: '/webssh', name: 'webssh', component: webssh,  meta: {path: '/webssh'}},
+                        { path: '/email', name: 'email', component: email,  meta: {path: '/email'}},
                     ]
                 },
             ]

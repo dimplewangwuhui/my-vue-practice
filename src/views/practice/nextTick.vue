@@ -20,19 +20,14 @@
     </table>
     <div class="app">
       <div ref="msgDiv">{{msg}}</div>
-      <div v-if="msg1">无 $nextTick:{{msg1}}</div>
-      <div v-if="msg2">有 $nextTick: {{msg2}}</div>
-      <div v-if="msg3">无 $nextTick:{{msg3}}</div>
-      <button @click="changeMsg">
-        Change the Message
-      </button>
+      <div>无 $nextTick: {{msg1}}</div>
+      <div>有 $nextTick: {{msg2}}</div>
+      <div>无 $nextTick: {{msg3}}</div>
+      <el-button type="primary" @click="changeMsg">Change the Message</el-button>
     </div>
-    <div>
-      <ul>
-        <li class="item" v-for="item in testItems">
-          {{item}}
-        </li>
-      </ul>
+
+    <div ref="hello">
+      <h1>Hello World</h1>
     </div>
   </div>
 </template>
@@ -45,15 +40,14 @@
         msg: 'Hello Vue.js',
         msg1: '',
         msg2: '',
-        msg3: '',
-        testItems: ['a', 'b', 'c']
+        msg3: ''
       }
     },
     methods: {
       changeMsg() {
         this.msg = "Hello world";
         //vue考虑到性能虽然数据层更新了，DOM不会立即更新
-        this.msg1 = this.$refs.msgDiv.innerText;
+        this.msg1 = this.$refs.msgDiv.innerText;        // Vue.js2.0中，通过this.$refs.XXX或者this.refs['XXX']来获取dom元素
         //$nextTick中的函数会在DOM更新完后立即执行
         this.$nextTick(() => {
           this.msg2 = this.$refs.msgDiv.innerText
@@ -62,17 +56,28 @@
       },
     },
     mounted() {
-      this.testItems.push('我是新增的d');
-      console.log('this.testItems.length', this.testItems.length);
-      console.log(this.$el.querySelectorAll('.item'));
-      console.log('mounted里的 this.$el.querySelectorAll(\'.item\').length', this.$el.querySelectorAll('.item').length);  // 3
+      console.log(333);
+      console.log(this.$refs['hello']);
       this.$nextTick(() => {
-        console.log('mounted里的$nextTick的 this.$el.querySelectorAll(\'.item\').length', this.$el.querySelectorAll('.item').length);  // 4
-      })
+        console.log(444);
+        console.log(this.$refs['hello']);
+      });
     },
-    updated() {
-      console.log('updated 里的this.$el.querySelectorAll(\'.item\').length', this.$el.querySelectorAll('.item').length)  // 4
-    },
+    created() {
+      console.log(111);
+      console.log(this.$refs['hello']);   // 可以根据打印的顺序看到，在created()钩子函数执行的时候DOM 其实并未进行任何渲染，而此时进行DOM操作并无作用，而在created()里使用this.$nextTick()可以等待dom生成以后再来获取dom对象
+      this.$nextTick(() => {
+        console.log(222);
+        console.log(this.$refs['hello']);
+      });
+
+      this.$nextTick(() => {
+        // 禁用右键
+        document.oncontextmenu = new Function("event.returnValue=false");
+        // 禁用选择
+        document.onselectstart = new Function("event.returnValue=false");
+      });
+    }
   }
 </script>
 

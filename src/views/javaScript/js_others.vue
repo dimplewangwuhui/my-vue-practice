@@ -42,6 +42,7 @@
                     {data:'typeof function () {}', result:'function'},
                     {data:'typeof myCar', result:'undefined (如果 myCar 没有声明)'},
                     {data:'typeof null', result:'object'},
+                    {data:'typeof undefined', result:'undefined'},
                 ],
                 end_task_ids:[{id:1,name:'a'},{id:2,name:'b'},{id:3,name:'c'}]
             }
@@ -52,10 +53,11 @@
                 var b = + a;
                 console.log('a的数据类型:', typeof a);
                 console.log('b的数据类型:', typeof b);
-                var c = 'wang';
+                var c = 'wang wu hui';
                 var d = + a;
                 console.log('c的数据类型:', typeof c);
                 console.log('d的数据类型:', typeof d);
+                console.log(d)  // 5
             },
             splice() {
                 for(var i=0; i<this.end_task_ids.length; i++){
@@ -68,6 +70,11 @@
                 }
                 console.log('...', this.end_task_ids)
             }
+        },
+        mounted() {
+            console.log(typeof NaN)  // number
+            console.log(typeof null)  // object
+            console.log(typeof undefined)  // undefined
         }
     }
 </script>

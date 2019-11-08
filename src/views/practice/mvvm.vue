@@ -116,6 +116,9 @@
                 this.input6_length = this.input6.length;
             }
         },
+        mounted() {
+            console.log(this.$route.params)
+        }
     }
 </script>
 

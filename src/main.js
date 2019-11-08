@@ -11,39 +11,9 @@ import './assets/js/iconfont.js'
 import namelimit from './utils/nameLimit'
 
 import {
-  Button,
-  Pagination,
-  Select,
-  Option,
-  Row,
-  Col,
-  Input,
-  Radio,
-  RadioGroup,
-  Table,
-  TableColumn,
-  Tooltip,
-  Checkbox,
-  CheckboxGroup,
-  Form,
-  FormItem,
-  Dropdown,
-  DropdownMenu,
-  DropdownItem,
-  Dialog,
-  Tree,
-  Breadcrumb,
-  BreadcrumbItem,
-  Card,
-  Backtop,
-  Drawer,
-  Tabs,
-  TabPane,
-  Menu,
-  MenuItem,
-  MenuItemGroup,
-  Icon
-} from 'element-ui'
+  Button, Pagination, Select, Option, Row, Col, Input, Radio, RadioGroup, Table, TableColumn, Tooltip, Checkbox, CheckboxGroup,
+  Form, FormItem, Dropdown, DropdownMenu, DropdownItem, Dialog, Tree, Breadcrumb, BreadcrumbItem, Card, Backtop, Drawer,
+  Tabs, TabPane, Menu, MenuItem, MenuItemGroup, Icon, InputNumber} from 'element-ui'
 import SubMenu from "element-ui/src/utils/menu/aria-submenu";
 
 Vue.prototype.$bus = bus;
@@ -86,6 +56,7 @@ Vue.component(MenuItem.name, MenuItem);
 Vue.component(MenuItemGroup.name, MenuItemGroup);
 Vue.component(SubMenu.name, SubMenu);
 Vue.component(Icon.name, Icon);
+Vue.component(InputNumber.name, InputNumber);
 
 
 new Vue({

@@ -72,9 +72,9 @@
         name: "task",
         data() {
             return{
-                taskImg0:require("../assets/img/task0.png"),
-                taskImg1:require("../assets/img/task.png"),
-                task2Img:require("../assets/img/task2.png"),
+                taskImg0:require("../../assets/img/task0.png"),
+                taskImg1:require("../../assets/img/task.png"),
+                task2Img:require("../../assets/img/task2.png"),
             }
         },
         methods:{
@@ -133,11 +133,11 @@
                 Promise.resolve().then(() => {//1微任务
                     console.log('promise1');
                 });
-                // new Promise(function (resolve) {
-                //     console.log('...');
-                //     resolve()
-                // }).then(console.log('***'));
-                // console.log('开始了')
+                new Promise(function (resolve) {
+                    console.log('...');
+                    resolve()
+                }).then(console.log('***'));
+                console.log('开始了')
             },
 
             task4() {
@@ -287,6 +287,9 @@
                 }, 3000);
                 console.log('ddddd')
             }
+        },
+        mounted() {
+
         }
     }
 </script>

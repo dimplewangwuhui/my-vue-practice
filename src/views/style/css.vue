@@ -17,7 +17,9 @@
 
                 <el-button @click="show2 = !show2">Toggle render</el-button>
                 <transition name="bounce">
-                    <p v-if="show2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
+                    <p v-if="show2">
+
+                    </p>
                 </transition>
 
                 <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
@@ -51,6 +53,29 @@
         <div class="yclq_scss"><span>scss变量名以$开始</span></div>
         <div class="yclq_less"><span>less变量名以@开始</span></div>
         <div class="yclq_stylus"><span>stylus变量名以任意字符开始，不要使用@</span></div>
+
+
+        <div class="m-layer z-show"><table><tbody><tr><td>
+            <article class="lywrap">
+                <header class="lytt"><h2 class="u-tt">标题</h2><span class="lyclose">×</span></header>
+                <section class="lyct">
+                    <p>默认固定居中，有遮罩，按钮区标题区都可删</p>
+                    <p>内容区：其他模块</p>
+                </section>
+                <footer class="lybt">
+                    <div class="lyother">
+                        <p>其他信息，比如提示</p>
+                    </div>
+                    <div class="lybtns">
+                        <button type="button" class="u-btn">确定</button>
+                        <button type="button" class="u-btn u-btn-c4">取消</button>
+                    </div>
+                </footer>
+            </article></td></tr></tbody></table>
+        </div>
+
+
+
     </div>
 </template>
 
@@ -96,9 +121,9 @@
         0% {
             transform: scale(0);
         }
-        50% {
-            transform: scale(1.5);
-        }
+        /*50% {*/
+            /*transform: scale(0.5);*/
+        /*}*/
         100% {
             transform: scale(1);
         }
@@ -107,6 +132,13 @@
     .bg{background-color: red;text-align: center;line-height: 100px}
     .text{color: green; font-size: 20px}
     .bgimg{width: 100px;height: 100px; background-position: center center; background-repeat: no-repeat;background-size:100% 100%;float: left;margin: 0 20px}
+
+
+
+    .m-layer{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);} .m-layer > table{table-layout:fixed;width:100%;height:100%;} .m-layer > table > tbody > tr > td{vertical-align:middle;} .m-layer .lywrap{position:relative;width:400px;margin:0 auto;border:5px solid rgba(0,0,0,0.3);border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.2);} .m-layer .lytt{position:relative;padding:10px;height:20px;margin:0 0 -1px;line-height:20px;border-bottom:1px solid #ddd;border-radius:5px 5px 0 0;background:#fafafa;} .m-layer .lytt h2{float:left;font-size:16px;} .m-layer .lyclose{float:right;font-weight:bold;font-family:arial;font-size:24px;color:#ccc;text-shadow:0 1px #fff;cursor:pointer;} .m-layer .lyclose:hover{color:#aaa;} .m-layer .lyct:last-child,.m-layer .lybt{border-bottom-right-radius:5px;border-bottom-left-radius:5px;} .m-layer .lyct:first-child{border-top-left-radius:5px;border-top-right-radius:5px;} .m-layer .lyct{padding:20px;background:#fff;} .m-layer .lybt{height:30px;line-height:30px;padding:10px;margin:-1px 0 0;border-top:1px solid #ddd;background:#f7f7f7;} .m-layer .lyother{float:left;color:#999;} .m-layer .lybtns{float:right;} .m-layer .lybtns button{float:left;margin-left:10px;} /* 显示 */ .m-layer.z-show{display:block;}
+
+
+
 </style>
 
 <style lang="scss">

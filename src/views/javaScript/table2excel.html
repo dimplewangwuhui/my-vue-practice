@@ -1,0 +1,61 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>TABLE转换EXCEL</title>
+    <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js" ></script>
+    <script src="../../assets/js/jquery.table2excel.js"></script>
+    <style type="text/css">
+        .btn{
+            margin:20px;
+        }
+    </style>
+</head>
+<body>
+<center>
+    <input class="btn" type="button"  value="点击导出">
+    <div class="table2excel">
+        <table id = 'testTable' border="1">
+            <tr>
+                <th>标题一</th>
+                <th>标题二</th>
+                <th>标题三</th>
+            </tr>
+            <tr  class="noExl">
+                <td>100（不导出）</td>
+                <td>200（不导出）</td>
+                <td>300（不导出）</td>
+            </tr>
+            <tr>
+                <td>400</td>
+                <td>500</td>
+                <td>600</td>
+            </tr>
+        </table>
+    </div>
+</center>
+<script type="text/javascript">
+    $(function() {
+        $(".btn").click(function(){
+            $(".table2excel").table2excel({
+                // 不被导出的表格行的CSS class类
+                exclude: ".noExl",
+                // 导出的Excel文档的名称
+                name: "Excel Document Name",
+                // Excel文件的名称
+                filename: "test",
+                //文件后缀名
+                fileext: ".xls",
+                //是否排除导出图片
+                exclude_img: false,
+                //是否排除导出超链接
+                exclude_links: false,
+                //是否排除导出输入框中的内容
+                exclude_inputs: false
+            });
+        });
+    });
+</script>
+</body>
+</html>
+

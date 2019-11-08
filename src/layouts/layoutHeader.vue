@@ -13,8 +13,8 @@
     </div>
     <div class="lang">
       <el-tooltip content="中/英文切换" placement="bottom" effect="light">
-        <svg class="icon" aria-hidden="true" v-if="lang === 'en'"><use xlink:href="#icon-fuhao-zhongwen"></use></svg>
-        <svg class="icon" aria-hidden="true" v-if="lang === 'cn'"><use xlink:href="#icon-fuhao-yingwen"></use></svg>
+        <svg class="icon" aria-hidden="true" v-if="lang === 'cn'"><use xlink:href="#icon-fuhao-zhongwen"></use></svg>
+        <svg class="icon" aria-hidden="true" v-if="lang === 'en'"><use xlink:href="#icon-fuhao-yingwen"></use></svg>
       </el-tooltip>
     </div>
     <div class="note">
@@ -98,7 +98,7 @@
       ]),
       username () {
         console.log('----===', this.user);
-        return this.user && this.user.adAccount
+        return this.user && this.user.username
       },
     },
     mounted () {
@@ -116,7 +116,7 @@
   .username {white-space:nowrap;max-width:10em;overflow:hidden;text-overflow:ellipsis;line-height:1.5;}
   .dropdown-userinfo .el-dropdown-menu__item {white-space: nowrap;}
   .el-button--primary {background-color: #FC796B!important;border-color: #FC796B!important;}
-  .el-dropdown-menu {margin-top: -10px !important;}
+  .el-dropdown-menu {margin-top: -8px !important;}
   .el-dropdown-menu > li:hover {padding-left: 3.5rem; position: relative;background-color: #F58A7F !important;color:#fff !important;}
   .btn-fullscreen{float: right;-webkit-transform: rotate(0deg); /*transform: rotate(45deg);*/margin-right: 10px; color: #576077; font-size: 20px;cursor: pointer; padding: 0 20px}
 </style>

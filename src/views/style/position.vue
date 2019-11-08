@@ -39,14 +39,14 @@
     .relative-div{
         height: 100px;
         background-color: orange;
-        position: absolute;
+        position: relative;
         top: 100px;
         right: 100px;
     }
     .child-absolute-div{
         height: 50px;
         background-color: lightskyblue;
-        position: absolute;
+        position: relative;
         top: 20px;
         right: 30px;
     }

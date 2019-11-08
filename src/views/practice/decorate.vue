@@ -23,8 +23,8 @@
                         </div>
                     </div>
                     <div class="bigOuter" id="1" @click="bigOuter2($event)" v-if="scope.row.key === '.capture'">
-                        <div class="outer" id="2" @click="bigOuter2($event)">
-                            <div class="middle" id="3" @click.capture="bigOuter2($event)">
+                        <div class="outer" id="2" @click.capture="bigOuter2($event)">
+                            <div class="middle" id="3" @click="bigOuter2($event)">
                                 <button id="4" @click="bigOuter2($event)">有.capture事件修饰符</button>
                             </div>
                         </div>
@@ -101,6 +101,7 @@
 </template>
 
 <script>
+    import {Message, MessageBox} from 'element-ui'
     export default {
         name: "decorate",
         data() {
@@ -163,10 +164,10 @@
                 this.eventData[2].message = this.message;
             },
             bigOuter2($event) {
-                this.message = 'bigOuter：这是最最最外面的Div';
+                this.message = '观察弹框id顺序';
                 this.eventData[2].message = this.message;
                 this.id = $event.currentTarget.id;
-                this.$alert(this.id)
+                Message({type: 'success', message: this.id})
             },
             outer2() {
                 this.message = 'outer：这是外面的Div';
@@ -188,30 +189,31 @@
                 this.show = !this.show
             },
             inner5() {
-                this.$alert('弹出来了');
+                Message('弹出来了');
             },
 
-            enter() { this.$alert('您刚才按了enter键!') },
-            tab() { this.$alert('您刚才按了tab键!') },
-            delete() { this.$alert('您刚才按了delete键!') },
-            esc() { this.$alert('您刚才按了esc键!') },
-            space() { this.$alert('您刚才按了space键!') },
-            up() { this.$alert('您刚才按了up键!') },
-            down() { this.$alert('您刚才按了down键!') },
-            left() { this.$alert('您刚才按了left键!') },
-            right() { this.$alert('您刚才按了right键!') },
+            enter() { Message({type: 'success', message: '您刚才按了enter键!'}) },
+            tab() { Message({type: 'success', message: '您刚才按了tab键!'}) },
+            delete() { Message({type: 'success', message: '您刚才按了delete键!'}) },
+            esc() { Message({type: 'success', message: '您刚才按了esc键!'}) },
+            space() { Message({type: 'success', message: '您刚才按了space键!'}) },
+            up() { Message({type: 'success', message: '您刚才按了up键!'}) },
+            down() { Message({type: 'success', message: '您刚才按了down键!'}) },
+            left() { Message({type: 'success', message: '您刚才按了left键!'}) },
+            right() { Message({type: 'success', message: '您刚才按了right键!'}) },
 
             exact() {
-                this.$alert('.exact修饰符弹出')
+                Message({type: 'success', message: '.exact修饰符弹出'})
             },
             mouth_left() {
-                this.$alert('你刚才点了鼠标左键')
+                Message({type: 'success', message: '你刚才点了鼠标左键'})
             },
             mouth_middle() {
-                this.$alert('你刚才点了鼠标滚轮键')
+                Message({type: 'success', message: '你刚才点了鼠标滚轮键'})
             },
             mouth_right() {
-                this.$alert('你刚才点了鼠标右键')
+                Message({type: 'success', message: '你刚才点了鼠标右键'}
+                )
             },
         }
     }
