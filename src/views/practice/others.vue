@@ -133,6 +133,14 @@
         <div>3、每一个vue组件都是Vue的实例，所以组件内this可以拿到Vue.prototype上添加的属性和方法</div>
         <div>4、Vue的插件是一个对象, 就像Element;插件对象必须有install字段;install字段是一个函数;初始化插件对象需要通过Vue.use()</div>
 
+        <div style="color: #FC796B; font-size: 20px; margin: 10px 0">scrollHeight, clientHeight, offsetHeight的区别</div>
+        <div class="container1">
+            <div class="large_block1"></div>
+        </div>
+
+        <div>
+            <json-viewer :value="jsonData"></json-viewer>
+        </div>
     </div>
 </template>
 
@@ -191,6 +199,15 @@
                     {method1:'Set.prototype.has(value)',note1:'返回一个布尔值，表示该值是否为Set的成员',method2:'Set.prototype.forEach()',note2:'使用回调函数遍历每个成员'},
                     {method1:'Set.prototype.clear()',note1:'清除所有成员，没有返回值',method2:'',note2:''},
                 ],
+                radiogroup: 1,
+                jsonData:{
+                    total: 25,
+                    limit: 10,
+                    skip: 0,
+                    links: {
+                        previous: undefined
+                    }
+                }
             }
         },
 
@@ -386,6 +403,21 @@
             this.timer = setInterval(() => {
                 this.date=new Date()
             }, 1000)
+
+            console.log('lllll', ['1', '7', '11'].map(parseInt))   // [1, NaN, 3]
+            console.log(parseInt('7'))  // parseInt(string, radix)  radix默认为10进制
+            // map回调函数会传入三个参数（当前遍历的项， 当前索引， 遍历的整个数组）
+            // 所以这里parseInt()回调函数（第一个参数string = 当前项， 第二个参数radix = 当前索引）
+            // parseInt('1', 0) = 1
+            // parseInt('7', 1) = NaN
+            // parseInt('11', 2) = 3
+
+            console.table(this.tableData)  // 巧用console.table(object)
+
+            var that = this
+            console.log(111, this)
+            console.log(222, that)
+            console.log(this == that)
         },
 
         filters: {
@@ -400,4 +432,19 @@
 <style scoped>
     a {text-decoration-line: none; margin: 0 20px 20px 0}
     a:hover {text-decoration-line: underline}
+
+    .container1 {
+        width: 200px;
+        height: 200px;
+        padding: 10px;
+        border: 10px solid lightgray;
+        overflow: auto;
+    }
+    .large_block1 {
+        width: 400px;
+        height: 400px;
+        background-color: lightblue;
+        padding: 20px;
+        margin: 20px;
+    }
 </style>

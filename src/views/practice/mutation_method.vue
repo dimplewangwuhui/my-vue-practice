@@ -295,6 +295,8 @@
       //     return number % 2 === 0
       //   })
       // }
+    },
+    mounted() {
     }
   }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="logo">
-      <span class="logo_text">前端开发问题总结</span>
+      <span class="logo_text"></span>
     </div>
     <div class="logout">
       <el-dropdown trigger="hover">

@@ -9,11 +9,12 @@ import VueI18n from 'vue-i18n';
 import i18n from './i18n/index';
 import './assets/js/iconfont.js'
 import namelimit from './utils/nameLimit'
+import JsonViewer from 'vue-json-viewer'
 
 import {
   Button, Pagination, Select, Option, Row, Col, Input, Radio, RadioGroup, Table, TableColumn, Tooltip, Checkbox, CheckboxGroup,
   Form, FormItem, Dropdown, DropdownMenu, DropdownItem, Dialog, Tree, Breadcrumb, BreadcrumbItem, Card, Backtop, Drawer,
-  Tabs, TabPane, Menu, MenuItem, MenuItemGroup, Icon, InputNumber} from 'element-ui'
+  Tabs, TabPane, Menu, MenuItem, MenuItemGroup, Icon, InputNumber, RadioButton} from 'element-ui'
 import SubMenu from "element-ui/src/utils/menu/aria-submenu";
 
 Vue.prototype.$bus = bus;
@@ -22,6 +23,7 @@ Vue.config.productionTip = false;
 // Vue.use(ElementUI);
 Vue.use(VueI18n);
 Vue.use(namelimit);
+Vue.use(JsonViewer);
 
 Vue.component(Button.name, Button);    // 或者写为Vue.use(Button)
 Vue.component(Pagination.name, Pagination);
@@ -57,6 +59,7 @@ Vue.component(MenuItemGroup.name, MenuItemGroup);
 Vue.component(SubMenu.name, SubMenu);
 Vue.component(Icon.name, Icon);
 Vue.component(InputNumber.name, InputNumber);
+Vue.component(RadioButton.name, RadioButton)
 
 
 new Vue({

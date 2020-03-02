@@ -18,6 +18,7 @@ const decorate = () => import('@/views/practice/decorate');
 const regexp = () => import('@/views/practice/regexp');
 const task = () => import('@/views/practice/task');
 const async_await = () => import('@/views/practice/async_await');
+const menu_group = () => import('@/views/practice/menu_group');
 const others = () => import('@/views/practice/others');
 
 // 组件
@@ -50,6 +51,7 @@ const tableEdit2 = () => import('@/views/others/tableEdit2');
 const django = () => import('@/views/others/django');
 const webssh = () => import('@/views/others/webssh');
 const email = () => import('@/views/others/email');
+const loading_more = () => import('@/views/others/loading_more')
 
 Vue.use(Router);  //如果在一个模块化工程中使用它，必须要通过 Vue.use() 明确地安装路由功能
 
@@ -78,6 +80,7 @@ const router = new Router({
                         { path: '/nextTick', name: 'nextTick', component: nextTick,  meta: {path: '/nextTick'}},
                         { path: '/regexp', name: '正则表达', component: regexp,  meta: {path: '/regexp'}},
                         { path: '/async_await', name: '同步异步', component: async_await,  meta: {path: '/async_await'}},
+                        { path: '/menu_group', name: '导航栏组', component: menu_group, meta: {path: '/menu_group'} },
                         { path: '/others', name: '其他', component: others,  meta: {path: '/others'}},
                     ]
                 },
@@ -142,6 +145,7 @@ const router = new Router({
                         { path: '/django', name: 'django前后端分离', component: django,  meta: {path: '/django'}},
                         { path: '/webssh', name: 'webssh', component: webssh,  meta: {path: '/webssh'}},
                         { path: '/email', name: 'email', component: email,  meta: {path: '/email'}},
+                        { path: '/loading_more', name: '加載更多', component: loading_more,  meta: {path: '/loading_more'}},
                     ]
                 },
             ]
