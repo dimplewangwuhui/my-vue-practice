@@ -32,6 +32,7 @@ const child4 = () => import('@/views/component/child4');
 // 样式
 const css = () => import('@/views/style/css');
 const position = () => import('@/views/style/position');
+const topFixed = () => import('@/views/style/topFixed');
 
 // ES6
 const first = () => import('@/views/ES6/first');
@@ -43,6 +44,8 @@ const async = () => import('@/views/ES6/async');
 // JavaScript
 const js_others = () => import('@/views/javaScript/js_others');
 const json2excel = () => import('@/views/javaScript/json2excel');
+const excel2json = () => import('@/views/javaScript/excel2json');
+const lodash = () => import('@/views/javaScript/lodash');
 
 //其他
 const luckywheel = () => import('@/views/others/luckywheel');
@@ -106,6 +109,7 @@ const router = new Router({
                     children: [
                         { path: '/css', name: '过渡动画', component: css, meta: {path: '/css'}},
                         { path: '/position', name: '浮动定位', component: position,  meta: {path: '/position'}},
+                        { path: '/topFixed', name: '吸顶效果', component: topFixed,  meta: {path: '/topFixed'}},
                     ]
                 },
                 {
@@ -130,6 +134,8 @@ const router = new Router({
                         { path: '/mutation_method', name: '数组方法', component: mutation_method,  meta: {path: '/mutation_method'}},
                         { path: '/task', name: '宏微任务', component: task,  meta: {path: '/task'}},
                         { path: '/json2excel', name: 'json2excel', component: json2excel, meta: {path: '/json2excel'}},
+                        { path: '/excel2json', name: 'excel2json', component: excel2json, meta: {path: '/excel2json'}},
+                        { path: '/lodash', name: 'lodash', component: lodash, meta: {path: '/lodash'}},
                         { path: '/js_others', name: '其它', component: js_others, meta: {path: '/js_others'}},
                     ]
                 },
