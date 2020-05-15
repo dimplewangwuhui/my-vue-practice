@@ -41,12 +41,12 @@ module.exports = {
         open: false, // 配置自动启动浏览器
         hotOnly: true, // 热更新
         proxy: { // 反向代理
-            '/api': {
-                target: 'http://127.0.0.1:8081/api',
+            '/bms': {
+                target: 'http://10.13.103.34:8089/bms',
                 changeOrigin: true,
-                // pathRewrite: {
-                //     '^/api': ''
-                // }
+                pathRewrite: {
+                    '^/bms': ''
+                }
             }
         }
     }

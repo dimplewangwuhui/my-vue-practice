@@ -10,6 +10,8 @@ import i18n from './i18n/index';
 import './assets/js/iconfont.js'
 import namelimit from './utils/nameLimit'
 import JsonViewer from 'vue-json-viewer'
+import vueXlsxTable from 'vue-xlsx-table'
+import _ from 'lodash'
 
 import {
   Button, Pagination, Select, Option, Row, Col, Input, Radio, RadioGroup, Table, TableColumn, Tooltip, Checkbox, CheckboxGroup,
@@ -24,6 +26,8 @@ Vue.config.productionTip = false;
 Vue.use(VueI18n);
 Vue.use(namelimit);
 Vue.use(JsonViewer);
+Vue.use(vueXlsxTable, {rABS: false});
+Vue.prototype._ = _;
 
 Vue.component(Button.name, Button);    // 或者写为Vue.use(Button)
 Vue.component(Pagination.name, Pagination);

@@ -1,6 +1,11 @@
 <template>
   <div class="header">
-    <div class="logo">
+    <div class="logo" v-if="!sidebar.status">
+      <transition name="el-fade-in-linear">
+        <span class="logo_text">Dimple老王的前端</span>
+      </transition>
+    </div>
+    <div v-else class="collapse-logo">
       <span class="logo_text"></span>
     </div>
     <div class="logout">
@@ -94,11 +99,11 @@
     },
     computed: {
       ...mapGetters([
-        'user'
+        'user', 'sidebar'
       ]),
       username () {
         console.log('----===', this.user);
-        return this.user && this.user.username
+        return this.user && this.user.adAccount
       },
     },
     mounted () {
@@ -109,7 +114,8 @@
 
 <style>
   .header {width: 100%; height: 60px; line-height: 60px;background-color: #fff; border-bottom: 1px solid #DDE2EF; position: fixed; z-index: 999; margin-top: -60px}
-  .logo {width: 201px; height: 60px; line-height: 60px; background-color: #FC796B; text-align: center; font-size: 20px; color: #fff; float: left}
+  .logo {width: 201px; height: 60px; line-height: 60px; background-color: #FC796B; text-align: center; font-size: 20px; color: #fff; float: left; transition: all .3s ease-out}
+  .collapse-logo {width: 57px; height: 60px; line-height: 60px; background-color: #FC796B; text-align: center; font-size: 20px; color: #fff; float: left; transition: all .3s ease-out }
   .note,.lang {float: right; margin-right: 10px; color: #576077; font-size: 18px; cursor: pointer; padding: 0 20px}
   .logout {float: right; margin-right: 50px}
   .logout:hover {background-color: #f0f0f0; height: 60px}

@@ -1,5 +1,5 @@
 import Cookie from 'js-cookie';
-const isCookie = true;
+const isCookie = false;
 export default {
     set (k, v) {
         if (!v && v !== 0) return this.remove(k);

@@ -17,9 +17,14 @@
         methods: {
             export2json(){
                 var data = {
-                    "title":[{"value":"集团", "type":"ROW_HEADER_HEADER", "datatype":"string"}, {"value":"日期", "type":"ROW_HEADER_HEADER", "datatype":"string"}],
-                    "data":[[{"value":"好好", "type":"ROW_HEADER"}, {"value":"2015-08-24", "type":"ROW_HEADER"}],
-                        [{"value":"坏坏", "type":"ROW_HEADER"}, {"value":"2015-08-25", "type":"ROW_HEADER"}]]
+                    "title":[
+                        {value:"集团"},
+                        {value:"日期"}
+                    ],
+                    "data":[
+                        [{value:"好好"}, {value:"2015-08-24"}],
+                        [{value:"坏坏"}, {value:"2015-08-25"}]
+                    ]
                 };
                 if(data == '')
                     return;

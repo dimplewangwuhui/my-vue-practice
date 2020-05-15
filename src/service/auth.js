@@ -7,10 +7,10 @@ export default {
             data: data
         })
     },
-    getInfo (data) {
+    getInfo () {
         return Fetch({
             method: 'get',
-            url: '/bms/v1/user/bg?Access-Token=' + data
+            url: '/bms/v1/user/bg'
         })
     }
 }
