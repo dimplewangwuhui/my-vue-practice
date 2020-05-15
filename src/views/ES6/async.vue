@@ -1,5 +1,5 @@
 <template>
-    <div style="padding: 20px; background-color: #fff">
+    <div style="padding: 20px;">
         <div class="chapter_title">Promise对象</div>
         <div style="color: #FC796B; font-size: 20px; margin: 10px 0">Promise状态</div>
         <div>状态的特点：</div>

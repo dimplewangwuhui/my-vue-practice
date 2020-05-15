@@ -1,5 +1,5 @@
 <template>
-    <div style="padding: 20px; background-color: #fff">
+    <div style="padding: 20px;">
         <div class="chapter_title">let与const命令：</div>
         <ul>
             <li>ES2015(ES6) 新增加了两个重要的 JavaScript 关键字: let 和 const。</li>

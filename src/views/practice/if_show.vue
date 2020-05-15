@@ -1,5 +1,5 @@
 <template>
-    <div style="padding: 20px; background-color: #fff">
+    <div style="padding: 20px;">
         <el-button @click="really = !really">显示/不显示</el-button>
         <div v-if="really">哇哈哈哈哈</div>
         <div v-show="really">哇哈哈哈哈</div>

@@ -1,5 +1,5 @@
 <template>
-    <div style="padding: 20px; background-color: #fff">
+    <div style="padding: 20px;">
         <div style="color: #FC796B; font-size: 20px; margin: 10px 0">router-link：</div>
         <router-link :to="{path: '/'}">数据绑定1</router-link>
         <router-link :to="{name: '数据绑定' }">数据绑定2</router-link>

@@ -1,5 +1,5 @@
 <template>
-    <div style="background-color: #fff; padding: 20px;">
+    <div style="padding: 20px;">
         <div class="well">
             <el-form class="search-form">
                 <div style="margin-bottom: 20px">

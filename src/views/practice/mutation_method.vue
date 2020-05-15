@@ -1,5 +1,5 @@
 <template>
-  <div style="padding: 20px; background-color: #fff">
+  <div style="padding: 20px;">
     <div class="box">
       <div style="color: #FC796B; font-size: 20px; margin: 10px 0">数组方法：</div>
       <span v-text="'数组:'+ list"></span><br>

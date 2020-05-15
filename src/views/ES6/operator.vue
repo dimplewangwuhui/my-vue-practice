@@ -1,5 +1,5 @@
 <template>
-    <div style="padding: 20px; background-color: #fff">
+    <div style="padding: 20px;">
         <div class="chapter_title">函数</div>
         <div style="color: #FC796B; font-size: 20px; margin: 10px 0">默认参数：</div>
         <div>只有在未传递参数，或者参数为 undefined 时，才会使用默认参数，null 值被认为是有效的值传递。</div>

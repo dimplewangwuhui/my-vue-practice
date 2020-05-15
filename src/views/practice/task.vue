@@ -1,5 +1,5 @@
 <template>
-    <div style="padding: 20px; background-color: #fff">
+    <div style="padding: 20px;">
         <div style="color: #FC796B; font-size: 20px; margin: 10px 0">事件循环、宏任务、微任务</div>
         <div>宏任务——setTimeout、setInterval、I/O、script</div>
         <div>微任务——promise、process.nextTick</div>

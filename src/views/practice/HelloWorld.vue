@@ -1,5 +1,5 @@
 <template>
-  <div style="padding: 20px; background-color: #fff">
+  <div style="padding: 20px;">
     <span>
       Vue生命周期总共分为8个阶段创建前/后，载入前/后，更新前/后，销毁前/后。<br>
 

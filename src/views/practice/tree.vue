@@ -1,5 +1,5 @@
 <template>
-    <div style="padding: 20px; background-color: #fff">
+    <div style="padding: 20px;">
         <div class="comp-tree">
             <el-button class="comp-tr-top" type="primary" size="small" @click="handleAddTop">添加顶级节点</el-button>
             <!-- tree -->

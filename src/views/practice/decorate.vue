@@ -1,5 +1,5 @@
 <template>
-    <div style="padding: 20px; background-color: #fff">
+    <div style="padding: 20px;">
         <div style="color: #FC796B; font-size: 20px; margin: 10px 0">事件修饰符：</div>
         <el-table :data="eventData" border>
             <el-table-column label="修饰符" prop="key"></el-table-column>

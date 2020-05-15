@@ -1,5 +1,5 @@
 <template>
-    <div style="padding: 20px; background-color: #fff">
+    <div style="padding: 20px;">
         <div style="color: #FC796B; font-size: 20px; margin: 10px 0">router-link绑定click事件：</div>
         <router-link v-for="(item,i) in content" :key="i" :to="{ path: item.path }" tag='li' @click.native="showIndicator(i)">
             {{item.title}}

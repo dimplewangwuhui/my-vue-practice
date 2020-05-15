@@ -1,5 +1,5 @@
 <template>
-    <div style="padding: 20px; background-color: #fff">
+    <div style="padding: 20px;">
         <el-row :gutter="10">
             <el-col :span="12">
                 <div style="color: #FC796B; font-size: 20px; margin: 10px 0">transition：</div>

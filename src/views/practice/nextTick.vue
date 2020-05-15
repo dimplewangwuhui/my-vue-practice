@@ -1,5 +1,5 @@
 <template>
-  <div style="padding: 20px; background-color: #fff">
+  <div style="padding: 20px;">
     <table border="1">
       <tr>
         <th>nextTick的理解</th>

@@ -1,5 +1,5 @@
 <template>
-    <div style="padding: 20px; background-color: #fff">
+    <div style="padding: 20px;">
         <el-table :data="tableData" align="center" @cell-dblclick="fn_dbclick_row">
             <el-table-column label="级数" prop="level" align="center">
                 <template slot-scope="scope">

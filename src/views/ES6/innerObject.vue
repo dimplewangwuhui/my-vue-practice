@@ -1,5 +1,5 @@
 <template>
-    <div style="padding: 20px; background-color: #fff">
+    <div style="padding: 20px;">
         <div id="app">
             <h1 style="font-size: 16px; text-align: center;">{{$t('hello')}}</h1>
         </div>

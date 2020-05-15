@@ -2,7 +2,7 @@
     <div>
         <el-row :gutter="20">
             <el-col :span="20">
-                <el-table ref="boxFixed" :data="tableData" border :header-row-class-name="FnHeaderRowClass" :header-cell-style="FnHeaderCellStyle" height="500px">
+                <el-table ref="boxFixed" :data="tableData" border :header-row-class-name="FnHeaderRowClass" :header-cell-style="FnHeaderCellStyle">
                     <el-table-column type="selection"></el-table-column>
                     <el-table-column prop="id" label="ID"></el-table-column>
                     <el-table-column prop="name" label="姓名"></el-table-column>
@@ -47,7 +47,7 @@
             },
             FnHeaderCellStyle({ row, column, rowIndex, columnIndex}) {
                 let realWidth = row[columnIndex].realWidth ? row[columnIndex].realWidth : row[columnIndex].minWidth
-                return `background: #dde2ef; color: #555; width: ${realWidth}px`
+                return `width: ${realWidth}px`
             },
             FnHeaderRowClass({ row, rowIndex}) {
                 let className = '';

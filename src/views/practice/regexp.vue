@@ -1,5 +1,5 @@
 <template>
-    <div style="padding: 20px; background-color: #fff">
+    <div style="padding: 20px;">
         <table border="1" style="width: 100%">
             <tr><th>字符</th><th>描述</th><th>字符串</th><th>表达式</th><th>匹配结果</th></tr>
             <tr><td>\d</td><td>匹配一个数字字符,等价于 [0-9]</td><td>wangwuhui666</td><td>str.match(/\d/)</td><td>{{res}}</td></tr>

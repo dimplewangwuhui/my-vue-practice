@@ -1,5 +1,5 @@
 <template>
-    <div style="padding: 20px; background-color: #fff">
+    <div style="padding: 20px;">
         <div style="color: #FC796B; font-size: 20px; margin: 10px 0">双向数据绑定：</div>
         <el-card class="box-card" shadow="hover">
             <div>MVVM模式：Model-View-ViewModel</div>

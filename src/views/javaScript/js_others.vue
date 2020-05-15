@@ -1,5 +1,5 @@
 <template>
-    <div style="padding: 20px; background-color: #fff">
+    <div style="padding: 20px;">
         <div id="datatype" style="color: #FC796B; font-size: 20px; margin: 10px 0">js数据类型：</div>
         <div>JavaScript 5 种数据类型：string、number、boolean、object、function</div>
         <div>JavaScript 2 种不包含任何值的数据类型：null、undefined</div>
