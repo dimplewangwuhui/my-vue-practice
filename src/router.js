@@ -28,11 +28,13 @@ const child1 = () => import('@/views/component/child1');
 const child2 = () => import('@/views/component/child2');
 const child3 = () => import('@/views/component/child3');
 const child4 = () => import('@/views/component/child4');
+const library = () => import('@/views/component/library');
 
 // 样式
 const css = () => import('@/views/style/css');
 const position = () => import('@/views/style/position');
 const topFixed = () => import('@/views/style/topFixed');
+const pseudoElement = () => import('@/views/style/pseudoElement');
 
 // ES6
 const first = () => import('@/views/ES6/first');
@@ -55,6 +57,8 @@ const django = () => import('@/views/others/django');
 const webssh = () => import('@/views/others/webssh');
 const email = () => import('@/views/others/email');
 const loading_more = () => import('@/views/others/loading_more')
+const orgChart = () => import('@/views/others/orgChart')
+const face = () => import('@/views/others/face')
 
 Vue.use(Router);  //如果在一个模块化工程中使用它，必须要通过 Vue.use() 明确地安装路由功能
 
@@ -99,6 +103,7 @@ const router = new Router({
                         { path: '/child2', name: '兄弟组件2', component: child2, hidden: true, meta: {path: '/child2'}},
                         { path: '/child3', name: 'A组件', component: child3, meta: {path: '/child3'}},
                         { path: '/child4', name: 'B 组件', component: child4, meta: {path: '/child4'}},
+                        { path: '/library', name: '开源组件库', component: library, meta: {path: '/library'}},
                     ]
                 },
                 {
@@ -110,6 +115,7 @@ const router = new Router({
                         { path: '/css', name: '过渡动画', component: css, meta: {path: '/css'}},
                         { path: '/position', name: '浮动定位', component: position,  meta: {path: '/position'}},
                         { path: '/topFixed', name: '吸顶效果', component: topFixed,  meta: {path: '/topFixed'}},
+                        { path: '/pseudoElement', name: '伪元素', component: pseudoElement,  meta: {path: '/pseudoElement'}},
                     ]
                 },
                 {
@@ -152,6 +158,8 @@ const router = new Router({
                         { path: '/webssh', name: 'webssh', component: webssh,  meta: {path: '/webssh'}},
                         { path: '/email', name: 'email', component: email,  meta: {path: '/email'}},
                         { path: '/loading_more', name: '加載更多', component: loading_more,  meta: {path: '/loading_more'}},
+                        { path: '/orgChart', name: '树形组织图', component: orgChart,  meta: {path: '/orgChart'}},
+                        { path: '/face', name: '人脸', component: face,  meta: {path: '/face'}},
                     ]
                 },
             ]
@@ -167,6 +175,7 @@ const router = new Router({
     // 使用前端路由，当切换到新路由时，想要页面滚到顶部，或者是保持原先的滚动位置，就像重新加载页面那样。 vue-router 能做到，而且更好，它让你可以自定义路由切换时页面如何滚动。
     // 这个功能只在 HTML5 history 模式下可用
     scrollBehavior (to, from, savedPosition) {
+        console.log('&&&', savedPosition)
         if (savedPosition) {
             return savedPosition
         } else {

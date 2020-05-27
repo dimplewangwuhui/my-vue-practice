@@ -24,8 +24,8 @@
         <i class="el-icon-bell" @click="showNote"></i>
         <!--<el-button @click="note">通知</el-button>-->
       </el-tooltip>
-      <el-drawer title="管理员通知" :visible.sync="drawer" :direction="direction">
-        <div><ul v-for="(item,i) in notes"><li>{{item.msg}}</li></ul></div>
+      <el-drawer title="最近通知" :visible.sync="drawer" :direction="direction">
+        <div style="color: #020821"><ul v-for="(item,i) in notes"><li>{{item.msg}}</li></ul></div>
       </el-drawer>
     </div>
     <div class="btn-fullscreen" @click="handleFullScreen">
@@ -49,8 +49,9 @@
         lang: 'cn',
         fullscreen: false,
         notes:[
-          {msg:'新增ES6'},
-          {msg:'新增JavaScript'}
+          {msg:'【20190815】新增ES6'},
+          {msg:'【20190815】新增JavaScript'},
+          {msg:'【20200515】页面样式变更、吸顶效果'}
         ],
       }
     },

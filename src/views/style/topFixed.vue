@@ -2,6 +2,7 @@
     <div>
         <el-row :gutter="20">
             <el-col :span="20">
+                <a href="#" class="link">哈哈哈</a>
                 <el-table ref="boxFixed" :data="tableData" border :header-row-class-name="FnHeaderRowClass" :header-cell-style="FnHeaderCellStyle">
                     <el-table-column type="selection"></el-table-column>
                     <el-table-column prop="id" label="ID"></el-table-column>
@@ -53,6 +54,15 @@
                 let className = '';
                 this.isFixed ? className = 'is_fixed' : className = '';
                 return className
+            },
+            // 生成器函数
+            * func() {
+                console.log(1)
+                yield '1'
+                console.log(2)
+                yield  '2'
+                console.log(3)
+                return '3'
             }
         },
         mounted() {
@@ -60,11 +70,14 @@
             this.$nextTick(() => {
                 this.offsetTop = this.getElementToPageTop(this.$refs.boxFixed.$el) - 60;  // 60是顶部导航栏的高度
             })
+            console.log('***', this.func().next())
+            console.log('***', this.func().next())
+            console.log('***', this.func().next())
+            console.log('***', this.func().next())
         },
         destroyed() {
             window.removeEventListener('scroll',() => {
-                this.scroll1 =
-                    document.querySelector('.recordContent').scrollTop
+                this.scroll1 = document.querySelector('.recordContent').scrollTop
             },false)
         }
     }
@@ -76,4 +89,8 @@
         top: 60px;
         z-index: 999;
     }
+    .link:link {color: blue}
+    .link:visited {color: red}
+    .link:hover {color: yellow}
+    .link:active {color: green}
 </style>

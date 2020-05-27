@@ -12,6 +12,12 @@ import namelimit from './utils/nameLimit'
 import JsonViewer from 'vue-json-viewer'
 import vueXlsxTable from 'vue-xlsx-table'
 import _ from 'lodash'
+import 'vue-orgchart/dist/style.min.css'
+import VueParticles from 'vue-particles'  // 粒子背景组件库
+import VueProgessBar from 'vue-progressbar'  // 轻量级进度条
+import VueSortable from 'vue-sortable'  //拖拽排序
+import VueStar from 'vue-star'  // 点赞
+import VueWeather from 'vue-weather-widget'
 
 import {
   Button, Pagination, Select, Option, Row, Col, Input, Radio, RadioGroup, Table, TableColumn, Tooltip, Checkbox, CheckboxGroup,
@@ -28,6 +34,15 @@ Vue.use(namelimit);
 Vue.use(JsonViewer);
 Vue.use(vueXlsxTable, {rABS: false});
 Vue.prototype._ = _;
+Vue.use(VueParticles);
+Vue.use(VueProgessBar, {
+  color: '#455CC6',
+  failedColor: '#F56C6C',
+  height: '2px'
+});
+Vue.use(VueSortable);
+Vue.component('VueStar', VueStar);
+Vue.component('VueWeather', VueWeather)
 
 Vue.component(Button.name, Button);    // 或者写为Vue.use(Button)
 Vue.component(Pagination.name, Pagination);

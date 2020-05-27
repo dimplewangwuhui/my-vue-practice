@@ -3,8 +3,9 @@ body {width:100%;height:100%;margin:0;padding:0;color:#fff;background-color:#041
 
 *:before, *:after {box-sizing: border-box;}
 ul {padding:0;margin-left: 20px}
+ul li {list-style: none}
 .flip-h {transform: rotateY(180deg);}
-a:focus, a:hover {text-decoration: none;}
+a, a:focus, a:hover {text-decoration: none; color: #dde2ef}
 hr {margin:1rem 0;}
 
 .h-center > * {text-align:center;flex:1;justify-content:center;}
@@ -93,7 +94,7 @@ svg + span {margin-left:5px;}
 
 .el-backtop, .el-calendar-table td.is-today {color: #020821;}
 .el-backtop:hover {background-color: #f0f0f0}
-.el-drawer {width: 20% !important;}
+.el-drawer {width: 25% !important;}
 .el-drawer__header {font-size: 20px}
 .el-drawer__close-btn:hover {color: #020821}
 .el-drawer__close-btn:active {border: 1px solid #fff}
@@ -126,3 +127,13 @@ svg + span {margin-left:5px;}
 .title {color: #020821; font-size: 20px; margin: 10px 0}
 .el-tooltip__popper.is-dark {background-color: #fff;font-size: 14px}
 /*.el-breadcrumb__inner {color: #fff !important;}*/
+.red-title {color: #FC796B; font-size: 20px; margin: 10px 0}
+
+.m-top20 {margin-top: 20px}
+.m-bottom20 {margin-bottom: 20px}
+.m-left20 {margin-left: 20px}
+.m-right20 {margin-right: 20px}
+
+.drag ul {padding:0; margin-left: 0}
+.drag ul li {border: 1px solid #f0f0f0; padding: 5px}
+.drag ul li i {float: right; cursor: pointer}
