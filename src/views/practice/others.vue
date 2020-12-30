@@ -141,6 +141,22 @@
         <div>
             <json-viewer :value="jsonData"></json-viewer>
         </div>
+
+        <div style="color: #FC796B; font-size: 20px; margin: 10px 0">window.location</div>
+        <div style="width: 200px; height: 200px; border: 1px solid #333; padding: 20px">A
+            <div style="padding: 20px; border: 1px solid #333;">B
+                <div style="padding: 20px; border: 1px solid #333;">C
+                    <div style="padding: 20px; border: 1px solid #333;">D
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            在D页面中写，"window.location.href"、"location.href"指的是D页面本身的跳转。<br>
+            在D页面中写，"window.parent.location.href"指的是C的页面跳转。<br>
+            在D页面中写，"window.top.location.href"指的是A的页面跳转。<br>
+        </div>
     </div>
 </template>
 
@@ -418,6 +434,35 @@
             console.log(111, this)
             console.log(222, that)
             console.log(this == that)
+
+            let arr = ['a', 'b', 'c', 'a', 'd', 'a']
+
+            let res = arr.reduce((pre, cur) => {
+                if (cur in pre) {
+                    pre[cur]++
+                } else {
+                    pre[cur] = 1
+                }
+                return pre
+            }, {})
+            console.log('aaa', res)
+
+            let res2 = arr.reduce((pre, cur) => {
+                if (!pre.includes(cur)) {
+                    return pre.concat(cur)
+                } else {
+                    return pre
+                }
+            }, [])
+            console.log('bbb', res2)
+
+            let arr3 = [[0, 1], [2, 3], [4, 5]]
+            let res3 = arr3.reduce((pre, cur) => {
+                return pre.concat(cur)
+            }, [])
+            console.log('ccc', res3)
+
+            console.log('ddd', new Array([1,2,[3,4]]))
         },
 
         filters: {

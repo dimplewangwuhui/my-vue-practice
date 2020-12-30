@@ -55,24 +55,28 @@
         <div class="yclq_stylus"><span>stylus变量名以任意字符开始，不要使用@</span></div>
 
 
-        <div class="m-layer z-show"><table><tbody><tr><td>
-            <article class="lywrap">
-                <header class="lytt"><h2 class="u-tt">标题</h2><span class="lyclose">×</span></header>
-                <section class="lyct">
-                    <p>默认固定居中，有遮罩，按钮区标题区都可删</p>
-                    <p>内容区：其他模块</p>
-                </section>
-                <footer class="lybt">
-                    <div class="lyother">
-                        <p>其他信息，比如提示</p>
-                    </div>
-                    <div class="lybtns">
-                        <button type="button" class="u-btn">确定</button>
-                        <button type="button" class="u-btn u-btn-c4">取消</button>
-                    </div>
-                </footer>
-            </article></td></tr></tbody></table>
-        </div>
+        <!--<div class="m-layer z-show"><table><tbody><tr><td>-->
+            <!--<article class="lywrap">-->
+                <!--<header class="lytt"><h2 class="u-tt">标题</h2><span class="lyclose">×</span></header>-->
+                <!--<section class="lyct">-->
+                    <!--<p>默认固定居中，有遮罩，按钮区标题区都可删</p>-->
+                    <!--<p>内容区：其他模块</p>-->
+                <!--</section>-->
+                <!--<footer class="lybt">-->
+                    <!--<div class="lyother">-->
+                        <!--<p>其他信息，比如提示</p>-->
+                    <!--</div>-->
+                    <!--<div class="lybtns">-->
+                        <!--<button type="button" class="u-btn">确定</button>-->
+                        <!--<button type="button" class="u-btn u-btn-c4">取消</button>-->
+                    <!--</div>-->
+                <!--</footer>-->
+            <!--</article></td></tr></tbody></table>-->
+        <!--</div>-->
+
+        <transition name="slideLeft">
+            <div>Hello World!</div>
+        </transition>
 
 
 
@@ -80,6 +84,7 @@
 </template>
 
 <script>
+    import 'vue-transition.css'
     export default {
         name: "css",
         data() {

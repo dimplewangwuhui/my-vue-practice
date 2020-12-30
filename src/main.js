@@ -18,6 +18,7 @@ import VueProgessBar from 'vue-progressbar'  // 轻量级进度条
 import VueSortable from 'vue-sortable'  //拖拽排序
 import VueStar from 'vue-star'  // 点赞
 import VueWeather from 'vue-weather-widget'
+import './directive/index'
 
 import {
   Button, Pagination, Select, Option, Row, Col, Input, Radio, RadioGroup, Table, TableColumn, Tooltip, Checkbox, CheckboxGroup,
@@ -38,7 +39,7 @@ Vue.use(VueParticles);
 Vue.use(VueProgessBar, {
   color: '#455CC6',
   failedColor: '#F56C6C',
-  height: '2px'
+  thickness: '10px'
 });
 Vue.use(VueSortable);
 Vue.component('VueStar', VueStar);
@@ -80,10 +81,15 @@ Vue.component(Icon.name, Icon);
 Vue.component(InputNumber.name, InputNumber);
 Vue.component(RadioButton.name, RadioButton)
 
+import VeHistogram from 'v-charts/lib/line.common'
+Vue.component(VeHistogram.name, VeHistogram)
+import VCharts from 'v-charts'
+Vue.use(VCharts)
 
-new Vue({
+var vue = new Vue({
   router,
   store,
   i18n,
   render: h => h(App),
 }).$mount('#app');
+export default vue

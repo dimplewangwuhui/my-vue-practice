@@ -14,6 +14,9 @@
             }
         },
         methods: {
+        },
+        mounted() {
+            console.log('======000000', this.$router)
         }
     }
 </script>

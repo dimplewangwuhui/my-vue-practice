@@ -4,6 +4,9 @@ import Layout from '@/layouts/layout';
 import redirect from '@/layouts/redirect';
 import store from '@/store';
 
+import practiceRouter from './utils/practiceRouter'
+import context from './main'
+
 // 路由懒加载
 // 当打包构建应用时，JavaScript 包会变得非常大，影响页面加载。
 // 如果我们能把不同路由对应的组件分割成不同的代码块，然后当路由被访问的时候才加载对应组件，这样就更加高效了。
@@ -19,6 +22,7 @@ const regexp = () => import('@/views/practice/regexp');
 const task = () => import('@/views/practice/task');
 const async_await = () => import('@/views/practice/async_await');
 const menu_group = () => import('@/views/practice/menu_group');
+const directive = () => import('@/views/practice/directive');
 const others = () => import('@/views/practice/others');
 
 // 组件
@@ -29,12 +33,15 @@ const child2 = () => import('@/views/component/child2');
 const child3 = () => import('@/views/component/child3');
 const child4 = () => import('@/views/component/child4');
 const library = () => import('@/views/component/library');
+const iframe_parent = () => import('@/views/component/iframe_parent')
+const iframe_child = () => import('@/views/component/iframe_child')
 
 // 样式
 const css = () => import('@/views/style/css');
 const position = () => import('@/views/style/position');
 const topFixed = () => import('@/views/style/topFixed');
 const pseudoElement = () => import('@/views/style/pseudoElement');
+const scroll = () => import('@/views/style/scroll');
 
 // ES6
 const first = () => import('@/views/ES6/first');
@@ -72,13 +79,18 @@ const router = new Router({
             path: '',
             component: Layout,
             children: [
+                // {
+                //     path: '/',
+                //     name: '',
+                //     component: redirect,
+                // },
                 {
                     path: '/',
                     name: '练习',
                     component: redirect,
                     iconClass: 'el-icon-edit-outline',
                     children: [
-                        { path: '/', name: '数据绑定', component: mvvm,  meta: {path: '/'}},
+                        { path: '/mvvm', name: '数据绑定', component: mvvm,  meta: {path: '/'}},
                         { path: '/vue_router', name: 'vue路由', component: vue_router,  meta: {path: '/vue_router'}},
                         { path: '/if_show', name: '条件渲染', component: if_show,  meta: {path: '/if_show'}},
                         { path: '/decorate', name: '修饰符', component: decorate,  meta: {path: '/decorate'}},
@@ -88,6 +100,7 @@ const router = new Router({
                         { path: '/regexp', name: '正则表达', component: regexp,  meta: {path: '/regexp'}},
                         { path: '/async_await', name: '同步异步', component: async_await,  meta: {path: '/async_await'}},
                         { path: '/menu_group', name: '导航栏组', component: menu_group, meta: {path: '/menu_group'} },
+                        { path: '/directive', name: '自定义指令', component: directive, meta: {path: '/directive'} },
                         { path: '/others', name: '其他', component: others,  meta: {path: '/others'}},
                     ]
                 },
@@ -104,6 +117,8 @@ const router = new Router({
                         { path: '/child3', name: 'A组件', component: child3, meta: {path: '/child3'}},
                         { path: '/child4', name: 'B 组件', component: child4, meta: {path: '/child4'}},
                         { path: '/library', name: '开源组件库', component: library, meta: {path: '/library'}},
+                        { path: '/iframe_parent', name: 'iframe父亲', component: iframe_parent, meta: {path: '/iframe_parent'} },
+                        { path: '/iframe_child', name: 'iframe儿子', component: iframe_child, meta: {path: '/iframe_child'} },
                     ]
                 },
                 {
@@ -116,6 +131,7 @@ const router = new Router({
                         { path: '/position', name: '浮动定位', component: position,  meta: {path: '/position'}},
                         { path: '/topFixed', name: '吸顶效果', component: topFixed,  meta: {path: '/topFixed'}},
                         { path: '/pseudoElement', name: '伪元素', component: pseudoElement,  meta: {path: '/pseudoElement'}},
+                        { path: '/scroll', name: '滚动展示', component: scroll,  meta: {path: '/scroll'}},
                     ]
                 },
                 {
@@ -175,7 +191,6 @@ const router = new Router({
     // 使用前端路由，当切换到新路由时，想要页面滚到顶部，或者是保持原先的滚动位置，就像重新加载页面那样。 vue-router 能做到，而且更好，它让你可以自定义路由切换时页面如何滚动。
     // 这个功能只在 HTML5 history 模式下可用
     scrollBehavior (to, from, savedPosition) {
-        console.log('&&&', savedPosition)
         if (savedPosition) {
             return savedPosition
         } else {
@@ -215,6 +230,23 @@ router.beforeEach((to, from, next) => {
     } else {
         next();
     }
+
+    // if (store.getters.user) {
+    //     if(store.getters.user.loginName !== 'wuhui.wang'){
+    //         if (to.fullPath.indexOf('/practice')>=0 || to.fullPath === '/') {
+    //             next('/self_component')
+    //         } else {
+    //             next()
+    //         }
+    //     }else{
+    //         context.$router.options.routes[0].children.splice(1,0, practiceRouter)
+    //         if (to.fullPath === '/') {
+    //             next('/mvvm')
+    //         } else {
+    //             next()
+    //         }
+    //     }
+    // }
 
 });
 export default router;

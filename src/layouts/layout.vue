@@ -1,5 +1,5 @@
 <template>
-  <div class="layout-container">
+  <div class="layout-container" v-if="isAlive">
     <LayoutHeader></LayoutHeader>
     <Sidebar></Sidebar>
     <LayoutMain></LayoutMain>
@@ -15,7 +15,25 @@ export default {
     LayoutHeader,
     Sidebar,
     LayoutMain
+  },
+  data() {
+    return {
+      isAlive: true
+    }
+  },
+  provide() {
+    return {
+      reFresh: this.refresh
+    }
+  },
+  methods: {
+    refresh() {
+      console.log('刷新', this.$router)
+      this.isAlive = false;
+      this.$nextTick(() => {
+        this.isAlive = true
+      })
+    }
   }
 }
 </script>
-

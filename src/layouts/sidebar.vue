@@ -129,6 +129,7 @@ import ElMenu from '@/components/menu/src/menu'
 import ElSubmenu from '@/components/menu/src/submenu'
 import ElMenuItem from '@/components/menu/src/menu-item'
 import svgIcon from '@/components/svg-icon'
+import practiceRouter from '@/utils/practiceRouter'
 export default {
   components: { ElMenu, ElSubmenu, ElMenuItem, svgIcon },
   data () {
@@ -160,14 +161,13 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'sidebar'
+      'sidebar', 'user'
     ]),
     isCollapse () {
       console.log('导航栏状态:', this.sidebar.status);
       return this.sidebar.status
     },
     routes () {
-      console.log('........', this.$router.options.routes)
       return this.$router.options.routes
     },
     currentView () {

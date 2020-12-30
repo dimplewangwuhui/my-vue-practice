@@ -40,6 +40,7 @@
   import svgIcon from '@/components/svg-icon'
   import { mapGetters } from 'vuex'
   import {MessageBox} from 'element-ui'
+  import practiceRouter from '@/utils/practiceRouter'
   export default {
     components: { svgIcon, MessageBox},
     data () {
@@ -55,6 +56,7 @@
         ],
       }
     },
+    inject: ['reFresh'],
     methods: {
       logout () {
         MessageBox.confirm('确认退出？', '提示').then(_ => {
@@ -62,7 +64,16 @@
         }).catch(_ => {})
       },
       getUserInfo () {
-        this.$store.dispatch('GetInfo').catch(_ => {})
+        this.$store.dispatch('GetInfo').catch(_ => {}).then(res => {
+          if (res.data && res.data.loginName === 'wuhui.wang') {
+            // let routes = this.$router.options.routes[0].children
+            // routes.splice(1,0, practiceRouter)
+            // this.$router.push('/mvvm')
+          } else {
+            // this.$router.push('/self_component')
+          }
+          this.reFresh()
+        })
       },
       showNote() {
         this.drawer = true;
@@ -100,12 +111,21 @@
         'user', 'sidebar'
       ]),
       username () {
-        console.log('----===', this.user);
         return this.user && this.user.adAccount
       },
     },
     mounted () {
-      this.getUserInfo()
+      if (!this.user) {
+        this.getUserInfo()
+      } else {
+        if (this.$route.path === '/') {
+          if(this.user && this.user.loginName === 'wuhui.wang'){
+            this.$router.push('/practice')
+          } else {
+            this.$router.push('/self_component')
+          }
+        }
+      }
     }
   }
 </script>

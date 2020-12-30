@@ -18,7 +18,7 @@ const practiceRouter = {
     component: redirect,
     iconClass: 'el-icon-edit-outline',
     children: [
-        { path: '/', name: '数据绑定', component: mvvm,  meta: {path: '/'}},
+        { path: '/mvvm', name: '数据绑定', component: mvvm,  meta: {path: '/'}},
         { path: '/vue_router', name: 'vue路由', component: vue_router,  meta: {path: '/vue_router'}},
         { path: '/if_show', name: '条件渲染', component: if_show,  meta: {path: '/if_show'}},
         { path: '/decorate', name: '修饰符', component: decorate,  meta: {path: '/decorate'}},
@@ -30,6 +30,6 @@ const practiceRouter = {
         { path: '/menu_group', name: '导航栏组', component: menu_group, meta: {path: '/menu_group'} },
         { path: '/others', name: '其他', component: others,  meta: {path: '/others'}},
     ]
-};
+}
 
 export default practiceRouter
