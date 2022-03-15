@@ -25,6 +25,8 @@ import {
   Form, FormItem, Dropdown, DropdownMenu, DropdownItem, Dialog, Tree, Breadcrumb, BreadcrumbItem, Card, Backtop, Drawer,
   Tabs, TabPane, Menu, MenuItem, MenuItemGroup, Icon, InputNumber, RadioButton} from 'element-ui'
 import SubMenu from "element-ui/src/utils/menu/aria-submenu";
+import wwhUI from 'wwh-ui'
+import 'wwh-ui/dist/wwh-ui.css'
 
 Vue.prototype.$bus = bus;
 
@@ -85,6 +87,7 @@ import VeHistogram from 'v-charts/lib/line.common'
 Vue.component(VeHistogram.name, VeHistogram)
 import VCharts from 'v-charts'
 Vue.use(VCharts)
+Vue.use(wwhUI)
 
 var vue = new Vue({
   router,

@@ -4,11 +4,11 @@
  * @description vue-cli 3.x配置文件
  */
 const path = require('path');
-const baseUrl = process.env.NODE_ENV === "production" ? "/static" : "/"; // font css资源路径
+const baseUrl = process.env.NODE_ENV === "production" ? "./" : "/"; // font css资源路径
 
 module.exports = {
     // 基本路径
-    publicPath: '/',
+    publicPath: baseUrl,
     // 输出文件目录
     outputDir: 'dist',
     // eslint-loader 是否在保存的时候检查(默认true)

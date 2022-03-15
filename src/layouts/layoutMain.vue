@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style>
-  .layout-main {margin:60px 0 0 200px;transition: all .3s ease-out;background-color: #041834;}
+  .layout-main {margin:60px 0 0 200px;transition: all .3s ease-out;background-color: #f0f0f0;}
   .layout-main.sidebar-collapse {margin-left:56px;}
   .breadcrumb {border-bottom: 1px solid #020821; height: 50px; line-height: 50px; padding-left: 20px; background-color: #041834}
   .breadcrumb-container {display: flex;}

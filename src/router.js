@@ -35,6 +35,7 @@ const child4 = () => import('@/views/component/child4');
 const library = () => import('@/views/component/library');
 const iframe_parent = () => import('@/views/component/iframe_parent')
 const iframe_child = () => import('@/views/component/iframe_child')
+const lib_component = () => import('@/views/component/lib_component')
 
 // 样式
 const css = () => import('@/views/style/css');
@@ -70,7 +71,7 @@ const face = () => import('@/views/others/face')
 Vue.use(Router);  //如果在一个模块化工程中使用它，必须要通过 Vue.use() 明确地安装路由功能
 
 const router = new Router({
-    mode: 'history',
+    // mode: 'history',
     // hash: 使用 URL hash 值来作路由。支持所有浏览器，包括不支持 HTML5 History Api 的浏览器。
     // history: 依赖 HTML5 History API 和服务器配置.
     // abstract: 支持所有 JavaScript 运行环境，如 Node.js 服务器端。如果发现没有浏览器的 API，路由会自动强制进入这个模式。
@@ -119,6 +120,7 @@ const router = new Router({
                         { path: '/library', name: '开源组件库', component: library, meta: {path: '/library'}},
                         { path: '/iframe_parent', name: 'iframe父亲', component: iframe_parent, meta: {path: '/iframe_parent'} },
                         { path: '/iframe_child', name: 'iframe儿子', component: iframe_child, meta: {path: '/iframe_child'} },
+                        { path: '/lib_component', name: '组件库', component: lib_component, meta: {path: '/lib_component'} },
                     ]
                 },
                 {
